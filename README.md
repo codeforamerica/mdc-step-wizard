@@ -7,7 +7,7 @@ The County has massive issues sharing information, especially about complicated 
 
 Stack (initially): 
 - HTML
-- Sass
+- CSS (Sass is overkill at this point)
 - Javascript & jQuery. 
 
 Shouldn't need to be server-side at all...but we'll see. 
