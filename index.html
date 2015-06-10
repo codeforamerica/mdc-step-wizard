@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Get your short-term event permit!</title>
     
-    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="../css/skeleton.css" />
-    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/skeleton.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     
    		<!--[if lt IE 9]>
 		    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -32,6 +32,7 @@
 		<header>
 		</header>
 		
+		<div id='container'>
 		<section id='address'>
 			
 			<div>
@@ -63,10 +64,32 @@
 				<span class='button'>Yes!</span> <!-- [SHOW SHORT-TERM, HIDE SPECIAL/UMSA-AND-SPECIAL] -->
 				<span class='button'>No.</span> <!-- [SHOW SPECIAL/UMSA-AND-SPECIAL, HIDE UMSA-AND-SHORT-TERM] -->
 				<span class='button'>What's a "temporary structure?"</span> <!-- Go where? -->
+				
+				<div id='short-term'>
+					
+					<p>You’ll need a Short-Term Events Permit if your event is open to the public and if your event has temporary structures, including tents (above a 10' x 12' threshold), bleachers, stages, specialty wiring, rides, lifts, and ramps, non-portable ventilation systems or enclosed cooking facilities.</p>
+					
+					<h2>Will you have a tent with a capacity for more than 300 people?</h2>
+					<span class='button'>Yes</span> <! -- SHOW B -->
+					<span class='button'>No.</span> <!-- HIDE B -->
+				</div>
+				
+				<div id='B'>
+					Do you plan on having more than 300 people inside a temporary tent? All temporary tents with more than 300 occupants require Miami-Dade Fire Rescue’s Fire Watch (MDFR) present for the duration of the event. Fire Watch can be set up by calling MDFR Special Events at (786) 331-4438. 
+				</div>
+				
+				<div id='special-event'>
+					<p>As your event doesn’t require temporary structures, you can apply for a more general special events permit instead.</p> <!-- how? -->
+				</div>
 			
 			</div>
 				
 		</section>
+		
+		<!--
+			
+			-->
+			
 		
 		<section id='certificate-of-use'>
 			
@@ -78,6 +101,11 @@
 				<span class='button'>No.</span> <!-- [HIDE A] -->
 				<span class='button'>I'm not sure.</span> <!-- Go where? -->
 				
+				<div id='A'>
+					<p>A Certificate of Use (formerly known as a Zoning Permit) is required and guarantees the business is allowed in the zoning district where it is located. There are three types of CUs: permanent, temporary and special. If not, a Certificate of Use is issued as part of the STEP process.</p>
+				</div>
+				
+			
 			</div>
 			
 		</section>
@@ -92,6 +120,22 @@
 				<span class='button'>Yes, a larger road, like a state road.</span> <!-- [SHOW D/D2/D3, HIDE D1] -->
 				<span class='button'>No, I'm not closing any streets or roads.</span> <!-- [HIDE D] -->
 				
+				<div id='D'>
+					<p>Are you going to close a street? If so, you’ll have to contact the Public Works department. <!-- add contact info --> </p>
+				</div>
+				
+				<div id='D1'>
+					<p>If you would like to temporary close a residential street for non-commercial purposes, you can apply for a block party permit. Block party permits are issued for free but come with conditions: street closures are only allowed during the day, and tables, tents or structures are not permitted on the street.</p>
+				</div>
+				
+				<div id='D2'>
+					<p>If a larger road closure is necessary, you’ll need to work with a licensed engineer to provide a Maintenance of Traffic (MOT) plan, and submit that to the Public Works department.
+If you would like to close a state road, you’ll need to get a Special Events Permit from the Florida Department of Transportation (FDOT).</p>
+				</div>
+				
+				<div id='D3'>
+					<!-- left empty -->
+				</div>
 			</div>
 			
 		</section>
@@ -106,6 +150,30 @@
 				<span class='button'>My event would be considered a carnival or a tent revival.</span> <!--  [SHOW B2, HIDE F/B1/B3] -->
 				<span class='button'>My event would be considered an assembly, circus or sporting event.</span> <!-- [SHOW F/B3, HIDE B1/B2] -->
 
+				
+				<div id='B1'>
+					[B1]
+Have you examined the MDFR safety inspection checklist for selling Christmas trees or sparklers?
+[/B1]
+				</div>
+				
+				<div id='B2'>
+					[B2]
+Have you examined the MDFR safety inspection checklist for carnivals or tent revivals?
+[/B2]
+
+				</div>
+				
+				<div id='B3'>
+					[B3]
+Have you examined the MDFR safety inspection checklist for carnivals or tent revivals?
+[/B3]
+				</div>
+				<div id='F'>
+					[F]
+Signed “waivers of objection” from nearby homeowners.  If your event is deemed a tent revival or a carnival by the county - or this is your third short-term event on a single property within the span of 12 months - you’ll need the names, addresses, phone numbers and signatures of nearby homeowners. You’ll need the signatures of 100% of the homeowners 500 feet from the venue, or 80% of homeowners 1000 feet from the venue.
+[/F]
+				</div>
 			</div>
 			
 		</section>
@@ -118,60 +186,26 @@
 				
 				<span class='button'>I will be providing portable restrooms.</span> <!-- [SHOW C] -->
 				<span class='button'>I will be providing portable OR stationary holding tanks.</span> <!--  [SHOW C] -->
-				<span class='button'>My event will have food trucks present.</span> <!-- [DO NOTHING] -->
-				<span class='button'>I will be selling food on the premises.</span> <!-- [SHOW C] -->
+				<span class='button'>My event will have food trucks present.</span> <!-- [SHOW C2/hide C1, C] -->
+				<span class='button'>I will be selling food on the premises.</span> <!-- [SHOW C1] -->
 				
+				<div id='C'>
+					Will you need to reach out to the Florida State Department of Health? 
+You’ll need to get approval from the Health Department if your event will have portable restrooms or portable/stationary holding tanks. 
+				</div>
+				
+				<div id='C1'>
+					If you’re selling food and and ARE NOT using food trucks (which are independently licensed and can just show up) you’ll need a Temporary Food Service Event License from the Florida Department of Business and Professional Regulation’s Division of Hotels and Restaurants.
+				</div>
+				
+				<div id='C2'>
+					If yo uhave food trucks, those are independently licensed.
+				</div>
 			</div>
 			
 		</section>
 		
 		<!--
-
-[NOT-IN-UMSA]
-[/NOT-IN-UMSA]
-
-[SHORT-TERM]
-You’ll need a Short-Term Events Permit if your event is open to the public and if your event has temporary structures, including tents (above a 10' x 12' threshold), bleachers, stages, specialty wiring, rides, lifts, and ramps, non-portable ventilation systems or enclosed cooking facilities.
-[/SHORT-TERM]
-
-[SPECIAL]
-As your event doesn’t require temporary structures, you can apply for a more general special events permit instead.
-[/SPECIAL]
-
-[UMSA-AND-SPECIAL]
-(THIS IS CURRENTLY UNDER CONSTRUCTION.)
-[/UMSA-AND-SPECIAL]
-
-[UMSA-AND-SHORT-TERM]
-What should I reach out to before starting the Short-Term Events Permitting process?
-
-[A] 
-Do you have a Certificate of Use (CU)? A Certificate of Use (formerly known as a Zoning Permit) is required and guarantees the business is allowed in the zoning district where it is located. There are three types of CUs: permanent, temporary and special. If not, a Certificate of Use is issued as part of the STEP process.
-[A]
-
-[B]
-Do you plan on having more than 300 people inside a temporary tent? All temporary tents with more than 300 occupants require Miami-Dade Fire Rescue’s Fire Watch (MDFR) present for the duration of the event. Fire Watch can be set up by calling MDFR Special Events at (786) 331-4438. 
-
-[B1]
-Have you examined the MDFR safety inspection checklist for selling Christmas trees or sparklers?
-[/B1]
-
-[B2]
-Have you examined the MDFR safety inspection checklist for carnivals or tent revivals?
-[/B2]
-
-[B3]
-Have you examined the MDFR safety inspection checklist for carnivals or tent revivals?
-[/B3]
-
-[/B]
-
-[C]
-Will you need to reach out to the Florida State Department of Health? 
-You’ll need to get approval from the Health Department if your event will have portable restrooms or portable/stationary holding tanks. 
-If you’re selling food and and ARE NOT using food trucks (which are independently licensed and can just show up) you’ll need a Temporary Food Service Event License from the Florida Department of Business and Professional Regulation’s Division of Hotels and Restaurants.
-[/C]
-
 Have you reached out to the Miami-Dade Police Department (MDPD)? The county does not require a police presence unless it’s on county property, but you want the police to be aware to reduce liability. You can contact MDPD at one of the following locations:
 5975 Miami Lakes Drive East, (305) 698-1500 
 9101 N.W. 25th Street, (305) 471-2800 
@@ -181,16 +215,7 @@ Miami International Airport, (305) 876-7373
 10800 S.W. 211th Street, (305) 378-4300 
 15665 Biscayne Boulevard, (305) 940-9980
 
-[D]
-Are you going to close a street? If so, you’ll have to contact the Public Works department. 
 
-	[D1]
-If you would like to temporary close a residential street for non-commercial purposes, you can apply for a block party permit. Block party permits are issued for free but come with conditions: street closures are only allowed during the day, and tables, tents or structures are not permitted on the street.
-[/D1]
-
-If a larger road closure is necessary, you’ll need to work with a licensed engineer to provide a Maintenance of Traffic (MOT) plan, and submit that to the Public Works department.
-If you would like to close a state road, you’ll need to get a Special Events Permit from the Florida Department of Transportation (FDOT).
-[/D]
 
 [E]
 Will you be holding the event at a county park? A County park requires insurance if you’re hosting an event with temporary structures. Contact the park directly - a representative from Miami-Dade Parks department will send you to the places where forms are required.
@@ -209,9 +234,7 @@ Temporary and permanent structures
 Detailed floor plans of the insides of structures, including where catering will be set up and where electrical will need to run
 Parking and setbacks 
 
-[F]
-Signed “waivers of objection” from nearby homeowners.  If your event is deemed a tent revival or a carnival by the county - or this is your third short-term event on a single property within the span of 12 months - you’ll need the names, addresses, phone numbers and signatures of nearby homeowners. You’ll need the signatures of 100% of the homeowners 500 feet from the venue, or 80% of homeowners 1000 feet from the venue.
-[/F]
+
 
 Complete the five page Professional Certification for Short Term Event Affidavit and Verification Form. You’ll need the signatures of the property owner, event holder, lead contractor,  electrical, plumbing, and mechanical contractors as well as the signature and seal of a Florida licensed and registered architect or engineer who will be responsible for performing plan reviews and inspections for Florida Building Code requirements.
 
@@ -257,6 +280,8 @@ If this inspection fails, the Event Holder will need to come into compliance and
 
 	
 		-->
+		
+		</div>
 		<footer>
 		</footer>
 			
