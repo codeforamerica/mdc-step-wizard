@@ -2,6 +2,15 @@ $(document).ready(function() {
 	
 	console.log('hello world');
 	
+	//init geocoder, so that it's ready to go
+	function initialize() {
+	
+	   geocoder = new google.maps.Geocoder();
+	   console.log('initialized geocoder');
+  	}
+
+  	initialize();
+	
 	$('.button').click(function(e) {
 		
 		e.preventDefault();
@@ -33,8 +42,6 @@ $(document).ready(function() {
 			}
 		});
 		
-		
-		
 	}
 	
 	
@@ -50,39 +57,11 @@ $(document).ready(function() {
 		
 		e.preventDefault();
 		var addy = $('input').val();
-		var url = 'http://gisws.miamidade.gov/gisaddress/addresswebservice.asmx/Address?myAddress=' + addy;
+		
 		console.log('addy: ', addy, url);
 		
 		
-		/*$.ajax({
-			url: "http://gisws.miamidade.gov/gisaddress/addresswebservice.asmx/Address",
-			  context: document.body
-			}).done(function() {
-			  $( this ).addClass( "done" );
-			});
-		
-		
-		$.ajax({
-                url: createCORSRequest('POST', 'http://gisws.miamidade.gov/gisaddress/addresswebservice.asmx/Address'),
-                dataType: 'text/xml',
-                type: 'POST',
-                
-                success: function( data, textStatus, jQxhr ){
-                    $('#response pre').html( data );
-                },
-                error: function( jqXhr, textStatus, errorThrown ){
-                    console.log( errorThrown );
-                }
-            });*/
-                        
-            var xhr = createCORSRequest('POST', url);
-			
-			if (!xhr) {
-				  throw new Error('CORS not supported');
-			}
-			xhr.send();
-
-			
+					
 			/*$.ajax({
 
 				  // The 'type' property sets the HTTP method.
@@ -132,36 +111,6 @@ $(document).ready(function() {
 
 		
 	})
-	
-	function createCORSRequest(method, url) {
-		  var xhr = new XMLHttpRequest();
-		  if ("withCredentials" in xhr) {
-		
-		    // Check if the XMLHttpRequest object has a "withCredentials" property.
-		    // "withCredentials" only exists on XMLHTTPRequest2 objects.
-		    xhr.open(method, url, true);
-		
-		  } else if (typeof XDomainRequest != "undefined") {
-		
-		    // Otherwise, check if XDomainRequest.
-		    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-		    xhr = new XDomainRequest();
-		    xhr.open(method, url);
-		
-		  } else {
-		
-		    // Otherwise, CORS is not supported by the browser.
-		    xhr = null;
-		
-		  }
-		  return xhr;
-		}
-		
-		/*var xhr = createCORSRequest('GET', url);
-		
-		*/
-	
-	
 	
 	
 }) //close ready
