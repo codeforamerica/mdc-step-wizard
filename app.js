@@ -3,11 +3,15 @@ $(document).ready(function() {
 	console.log('hello world');
 	
 	//init geocoder, so that it's ready to go
+	var geocoder;
+	//var map;
+	
 	function initialize() {
 	
 	   geocoder = new google.maps.Geocoder();
 	   console.log('initialized geocoder');
-  	}
+	   
+	}
 
   	initialize();
 	
@@ -44,7 +48,6 @@ $(document).ready(function() {
 		
 	}
 	
-	
 	//geocoding
 	$('#address-yes').click(function(e){
 		
@@ -58,9 +61,9 @@ $(document).ready(function() {
 		e.preventDefault();
 		var addy = $('input').val();
 		
-		console.log('addy: ', addy, url);
-		
-		
+		console.log('addy: ', addy);
+
+		codeAddress(addy);
 					
 			/*$.ajax({
 
@@ -111,6 +114,29 @@ $(document).ready(function() {
 
 		
 	})
+	
+	function codeAddress(address) {
+		
+	   // address = address;
+	    geocoder.geocode( { 'address': address}, function(results, status) {
+	    	
+	    	if (status == google.maps.GeocoderStatus.OK) {
+		      
+			    console.log(results[0].geometry.location);
+			    console.log(results);
+			    
+			    var lat = results[0].geometry.location.A;
+			    var lng = results[0].geometry.location.F;
+			    
+			    //console.log(lat, 'latitude');
+			  
+		      } else {
+		      
+		        alert("Geocode was not successful for the following reason: " + status);
+		      
+		      }
+	    });
+	}
 	
 	
 }) //close ready
