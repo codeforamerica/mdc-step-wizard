@@ -3,6 +3,7 @@
 	<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <title>Get your short-term event permit!</title>
     
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -11,6 +12,9 @@
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src='app.js' type="text/javascript"></script>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzCsQTTBA7AbrjxE6R5vwnZkL0q7Ev48Q">
+    </script>
     
    		<!--[if lt IE 9]>
 		    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -43,6 +47,24 @@
 					<h1>Do you know the address of where you’ll have the event?</h1>
 					
 					<span class='button' id='address-yes'>Yes!</span> <!-- show AmIinMiami -->
+					
+					<!-- address-search -->
+					<form id='address' class='hidden'>
+						<h3>Please enter your address.</h3>
+						<input type='text' id='input-address' placeholder='818 NE 71 Street'></input>
+						<span class='button active' id='submit-address' type='submit'>Submit</span>
+					</form>
+					
+					<!--
+						
+						<form id="my-form">
+    <input type="text" id="first-name" name="first-name" placeholder="First Name" />
+    <input type="text" id="last-name" name="last-name" placeholder="Last Name" />
+
+    <button type="submit">Submit</button>
+</form>
+						-->
+					
 					<span class='button' id='address-no'>No.</span>
 				
 				</div>
