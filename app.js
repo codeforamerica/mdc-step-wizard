@@ -64,78 +64,53 @@ $(document).ready(function() {
 		console.log('addy: ', addy);
 
 		codeAddress(addy);
-					
-			/*$.ajax({
-
-				  // The 'type' property sets the HTTP method.
-				  // A value of 'PUT' or 'DELETE' will trigger a preflight request.
-				  type: 'GET',
-				  
-				
-				  // The URL to make the request to.
-				  url: url,
-				
-				  // The 'contentType' property sets the 'Content-Type' header.
-				  // The JQuery default for this property is
-				  // 'application/x-www-form-urlencoded; charset=UTF-8', which does not trigger
-				  // a preflight. If you set this value to anything other than
-				  // application/x-www-form-urlencoded, multipart/form-data, or text/plain,
-				  // you will trigger a preflight request.
-				  contentType: 'application/x-www-form-urlencoded',
-				  
-				  xhrFields: {
-				    // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-				    // This can be used to set the 'withCredentials' property.
-				    // Set the value to 'true' if you'd like to pass cookies to the server.
-				    // If this is enabled, your server must respond with the header
-				    // 'Access-Control-Allow-Credentials: true'.
-				    withCredentials: false
-				  },
-				
-				  headers: {
-				    // Set any custom headers here.
-				    // If you set any non-simple headers, your server must include these
-				    // headers in the 'Access-Control-Allow-Headers' response header.
-				  },
-				
-				  success: function() {
-				    // Here's where you handle a successful response.
-				    console.log('success');
-				  },
-				
-				  error: function() {
-				    // Here's where you handle an error response.
-				    // Note that if the error was due to a CORS issue,
-				    // this function will still fire, but there won't be any additional
-				    // information about the error.
-				    console.log('fail');
-				  }
-				});*/
-
 		
 	})
 	
 	function codeAddress(address) {
 		
 	   // address = address;
+	   var lat;
+	   var lng;
+	   
 	    geocoder.geocode( { 'address': address}, function(results, status) {
-	    	
+		    
 	    	if (status == google.maps.GeocoderStatus.OK) {
 		      
-			    console.log(results[0].geometry.location);
-			    console.log(results);
+			    //console.log(results[0].geometry.location);
+			    //console.log(results);
+			
+				lat = results[0].geometry.location.A;
+			    lng = results[0].geometry.location.F;
 			    
-			    var lat = results[0].geometry.location.A;
-			    var lng = results[0].geometry.location.F;
-			    
-			    //console.log(lat, 'latitude');
-			  
-		      } else {
+			    console.log(lat, lng);
+			    AIIM(lat, lng);		//am I in miami?
+
+		    } else {
 		      
 		        alert("Geocode was not successful for the following reason: " + status);
 		      
-		      }
+		    }
+		    
 	    });
+	    
+	    	    
+	}
+	
+	function AIIM(latitude, longitude) {
+		
+		console.log("AIIM", latitude, longitude);
+		
+		$.ajax({
+			url: "http://still-eyrie-4551.herokuapp.com/areas",
+			data: {"lat":latitude, "lon":longitude, "include_geom":false},
+			dataType: "jsonp",
+			contentType: "application/json; charset=utf-8",
+			//jsonp: false
+		}).done(function(data) {
+			console.log('success', data);
+		})
+		
 	}
 	
 	
