@@ -56,12 +56,15 @@ $(document).ready(function() {
 		
 	})
 	
+
 	$('#submit-address').click(function(e) {
 		
 		e.preventDefault();
-		var addy = $('input').val();
+		var addy = $('input#input-address').val();
 		
 		console.log('addy: ', addy);
+		
+		//logic check to make sure that there's actually a value
 
 		codeAddress(addy);
 		
@@ -69,7 +72,6 @@ $(document).ready(function() {
 	
 	function codeAddress(address) {
 		
-	   // address = address;
 	   var lat;
 	   var lng;
 	   
@@ -78,7 +80,7 @@ $(document).ready(function() {
 	    	if (status == google.maps.GeocoderStatus.OK) {
 		      
 			    //console.log(results[0].geometry.location);
-			    //console.log(results);
+			    console.log(results);
 			
 				lat = results[0].geometry.location.A;
 			    lng = results[0].geometry.location.F;
