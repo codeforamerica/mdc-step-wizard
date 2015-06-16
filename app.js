@@ -4,6 +4,8 @@ $(document).ready(function() {
 	
 	//init geocoder, so that it's ready to go
 	var geocoder;
+	var municipality; 
+	
 	//var map;
 	
 	function initialize() {
@@ -54,6 +56,15 @@ $(document).ready(function() {
 		e.preventDefault();
 		$('form#address').removeClass('hidden');
 		
+	})
+	
+	$('#address-no').click(function(e) {
+		
+		e.preventDefault();
+		
+		
+		municipality = 'miami';
+		showUMSA();
 	})
 	
 
@@ -110,9 +121,35 @@ $(document).ready(function() {
 			contentType: "application/json; charset=utf-8",
 			//jsonp: false
 		}).done(function(data) {
+			
 			console.log('success', data);
+			
+			if(data.features.length > 0) {
+				
+				municipality = data.features[0].properties.NAME;
+				
+			} else {
+				
+				municipality = 'UMSA';
+			}
+			
+			showUMSA();
 		})
 		
+	}
+	
+	function showUMSA() {
+		
+		if(municipality != 'UMSA') {
+			
+			$('#umsa').removeClass('hidden');
+			$('form#address').addClass('hidden');	//in case someone hit 'yes' first.
+		
+		} else {
+			
+			console.log('you are in umsa. continue.');
+			//need a check for county park here.
+		}
 	}
 	
 	

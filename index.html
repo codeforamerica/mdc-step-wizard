@@ -40,6 +40,7 @@
 		</header>
 	
 		<div id='container'>
+			
 			<section id='address'>
 				
 				<div>
@@ -49,19 +50,22 @@
 					<div id='map-canvas'></div>
 					
 					<span class='button' id='address-yes'>Yes!</span> <!-- show AmIinMiami -->
+					<span class='button' id='address-no'>No.</span>
 					
 					<!-- address-search -->
 					<form id='address' class='hidden'>
+						
 						<h3>Please enter your address.</h3>
 						<input type='text' id='input-address' placeholder='818 NE 71 Street'></input>
+						
 						<span class='button active' id='submit-address' type='submit'>Submit</span>
 					</form>
 					
-					<span class='button' id='address-no'>No.</span>
+					
 				
 				</div>
 				
-				<div>
+				<div class='hidden' id='umsa'>
 					
 					<h2>Is your event being held in unincorporated Miami-Dade County, or in a county park?</h2>
 					<span class='button' id='umsa-yes'>Yes!</span> <!-- hide not-in-umsa -->
@@ -72,7 +76,7 @@
 				
 			</section>
 			
-			<section id='public-with-structures'>
+			<section id='public-with-structures' class='hidden'>
 				
 				<div>
 					
@@ -106,7 +110,7 @@
 					
 			</section>
 			
-			<section id='certificate-of-use'>
+			<section id='certificate-of-use' class='hidden'>
 				
 				<div>
 					
@@ -124,7 +128,7 @@
 				
 			</section>
 			
-			<section id='street-closure'>
+			<section id='street-closure' class='hidden'>
 				
 				<div>
 				
@@ -154,7 +158,7 @@
 				
 			</section>
 			
-			<section id='special-types'>
+			<section id='special-types' class='hidden'>
 				
 				<div>
 				
@@ -193,7 +197,7 @@
 				
 			</section>
 			
-			<section id='health'>
+			<section id='health' class='hidden'>
 				
 				<div>
 					
@@ -297,6 +301,7 @@ If this inspection fails, the Event Holder will need to come into compliance and
 		-->
 		
 		</div>
+		
 		<footer>
 		</footer>
 			
