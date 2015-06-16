@@ -83,14 +83,14 @@ $(document).ready(function() {
 	$('.button#public-yes').click(function(e) {
 		
 		$('#public-yes').removeClass('hidden');
-		$('#public-no').addClass('hidden');
+		//$('.button#public-no').addClass('hidden');
 		
 	})
 	
 	$('.button#public-no').click(function(e) {
 		
 		$('#public-no').removeClass('hidden');
-		$('#public-yes').addClass('hidden');
+		$('.button#public-yes').addClass('hidden');
 		$('div#tent-yes').addClass('hidden');
 		
 		//this ends the wizard. indicate that. 
@@ -111,6 +111,7 @@ $(document).ready(function() {
 	$('.button#tent-no').click(function(e) {
 		
 		$('div#tent-yes').addClass('hidden');
+		$('div#tent-no').removeClass('hidden');
 		
 	})
 	

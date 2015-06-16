@@ -88,6 +88,8 @@
 					
 					<div id='public-yes' class='hidden module'>
 						
+						<p>Ok! We've verified that you <b>do</b> need a Short-Term Events Permit (STEP).</p>
+						
 						<p>You’ll need a Short-Term Events Permit if your event is open to the public and if your event has temporary structures, including tents (above a 10' x 12' threshold), bleachers, stages, specialty wiring, rides, lifts, and ramps, non-portable ventilation systems or enclosed cooking facilities.</p>
 						
 						<h2>Will you have a tent with a capacity for more than 300 people?</h2>
@@ -96,6 +98,10 @@
 						
 						<div id='tent-yes' class='hidden module'>
 						Do you plan on having more than 300 people inside a temporary tent? All temporary tents with more than 300 occupants require Miami-Dade Fire Rescue’s Fire Watch (MDFR) present for the duration of the event. Fire Watch can be set up by calling MDFR Special Events at (786) 331-4438. 
+						</div>
+						
+						<div id='tent-no' class='hidden module'>
+							<p>Great! Since you're not using a tent, at this point you don't need to talk to MDFR. Remember, though, you may need Fire and Rescue for other services.</p>
 						</div>
 						
 					</div>
@@ -142,9 +148,11 @@
 					<span class='button' id='street-no'>No, I'm not closing any streets or roads.</span> <!-- [HIDE D] -->
 					
 					<div id='street-yes' class='hidden module'>
-						<p>Are you going to close a street? If so, you’ll have to contact the Public Works department. <!-- add contact info --></p>
+						<p>You'll need to call Public Works. <!-- add contact info --></p>
 						
-						<p>If you would like to temporary close a residential street for non-commercial purposes, you can apply for a block party permit. Block party permits are issued for free but come with conditions: street closures are only allowed during the day, and tables, tents or structures are not permitted on the street. </p>
+						<p>If you would like to temporary close a residential street for non-commercial purposes, you can apply for a block party permit. Block party permits are issued for free but come with conditions: street closures are only allowed during the day, and tables, tents or structures are not permitted on the street. A block party does not require a STEP.</p>
+						
+						<p>If your event is for commercial purposes, you'll still need a Short-Term Event Permit. Please continue!</p>
 					</div>
 					
 					<div id='street-yesAgain' class='hidden module'>
@@ -156,9 +164,6 @@
 						<p>Great! Carry on.</p>
 					</div>
 					
-					<div id='D3' class='hidden module'>
-						<!-- left empty -->
-					</div>
 				</div>
 				
 			</section>
@@ -184,6 +189,9 @@
 						[B2]
 	Have you examined the MDFR safety inspection checklist for carnivals or tent revivals?
 	[/B2]
+	
+	Signed "waivers of objection" from nearby homeowners.  If your event is deemed a tent revival or a carnival by the county - or this is your third short-term event on a single property within the span of 12 months - you’ll need the names, addresses, phone numbers and signatures of nearby homeowners. You’ll need the signatures of 100% of the homeowners 500 feet from the venue, or 80% of homeowners 1000 feet from the venue.
+
 	
 					</div>
 					
@@ -212,6 +220,7 @@
 					<span class='button' id='health-restroom'>I will be providing portable OR stationary holding tanks.</span> <!--  [SHOW C] -->
 					<span class='button' id='health-foodtrucks'>My event will have food trucks present.</span> <!-- [SHOW C2/hide C1, C] -->
 					<span class='button' id='health-foodsales'>I will be selling food on the premises.</span> <!-- [SHOW C1] -->
+					<span class='button' id='health-none'>None of these apply.</span>
 					
 					<div id='health-restroom' class='hidden module'>
 						Will you need to reach out to the Florida State Department of Health? 
@@ -224,6 +233,10 @@
 					
 					<div id='health-foodtrucks' class='hidden module'>
 						If you have food trucks, those are independently licensed.
+					</div>
+					
+					<div id='health-none' class='hidden module'>
+						<p>You don't need to call the Health Department!</p>
 					</div>
 				</div>
 				
