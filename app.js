@@ -50,7 +50,7 @@ $(document).ready(function() {
 		
 	}
 	
-	//geocoding
+	//geocoding -- UMSA or not? buttons
 	$('#address-yes').click(function(e){
 		
 		e.preventDefault();
@@ -67,7 +67,6 @@ $(document).ready(function() {
 		showUMSA();
 	})
 	
-
 	$('#submit-address').click(function(e) {
 		
 		e.preventDefault();
@@ -80,6 +79,82 @@ $(document).ready(function() {
 		codeAddress(addy);
 		
 	})
+	
+	$('.button#public-yes').click(function(e) {
+		
+		$('#public-yes').removeClass('hidden');
+		$('#public-no').addClass('hidden');
+		
+	})
+	
+	$('.button#public-no').click(function(e) {
+		
+		$('#public-no').removeClass('hidden');
+		$('#public-yes').addClass('hidden');
+		$('div#tent-yes').addClass('hidden');
+		
+		//this ends the wizard. indicate that. 
+		
+	})
+	
+	$('.button#public-whatIs').click(function(e) {
+		
+		console.log("what is a temporary structure?");
+		
+	})
+	
+	$('.button#tent-yes').click(function(e) {
+		
+		$('#certificate-of-use').removeClass('hidden');
+	})
+	
+	$('.button#tent-no').click(function(e) {
+		
+		$('div#tent-yes').addClass('hidden');
+		
+	})
+	
+	$('#certificate-of-use .button').click(function(e) {
+		
+		$('#street-closure').removeClass("hidden");
+		
+	})
+	
+	$('#street-closure .button').click(function(e) {
+		
+		$('#special-types').removeClass('hidden');
+	})
+	
+	$('.button#street-yes').click(function(e) {
+		
+		$('#street-yes').removeClass('hidden');
+	})
+	
+	$('.button#street-yesAgain').click(function(e) {
+		
+		$('#street-yesAgain').removeClass('hidden');
+	})
+	
+	$('.button#street-no').click(function(e) {
+		
+		$('div#street-yes').addClass("hidden");
+		$('div#street-no').removeClass('hidden');
+		
+	})
+	
+	$('#special-types .button').click(function(e) {
+		
+		$('#health').removeClass('hidden');
+	})
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	function codeAddress(address) {
 		
@@ -149,6 +224,8 @@ $(document).ready(function() {
 			
 			console.log('you are in umsa. continue.');
 			//need a check for county park here.
+			
+			$('#public-with-structures').removeClass('hidden');
 		}
 	}
 	

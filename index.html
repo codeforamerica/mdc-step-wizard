@@ -96,14 +96,12 @@
 						
 						<div id='tent-yes' class='hidden module'>
 						Do you plan on having more than 300 people inside a temporary tent? All temporary tents with more than 300 occupants require Miami-Dade Fire Rescue’s Fire Watch (MDFR) present for the duration of the event. Fire Watch can be set up by calling MDFR Special Events at (786) 331-4438. 
-					</div>
+						</div>
 						
 					</div>
 					
-					
-					
 					<div id='public-no' class='hidden module'>
-						<p>As your event doesn’t require temporary structures, you can apply for a more general special events permit instead.</p> <!-- how? -->
+						<p>As your event doesn’t require temporary structures, you can apply for a more general special events permit instead. [WIZARD END]</p> <!-- how? -->
 					</div>
 				
 				</div>
@@ -115,13 +113,18 @@
 				<div>
 					
 					<h1>Do you already have a Certificate of Use (CU)?</h1>
+					<p>A Certificate of Use (formerly known as a Zoning Permit) is required and guarantees the business is allowed in the zoning district where it is located. There are three types of CUs: permanent, temporary and special.</p>
 					
 					<span class='button' id='cu-yes'>Yes!</span> <!-- [SHOW A] -->
 					<span class='button' id='cu-no'>No.</span> <!-- [HIDE A] -->
 					<span class='button' id='cu-notSure'>I'm not sure.</span> <!-- Go where? -->
 					
 					<div id='cu-yes' class='hidden module'>
-						<p>A Certificate of Use (formerly known as a Zoning Permit) is required and guarantees the business is allowed in the zoning district where it is located. There are three types of CUs: permanent, temporary and special. If not, a Certificate of Use is issued as part of the STEP process.</p>
+						<p>Great! You're ready to move on.</p>
+					</div>
+					
+					<div id='cu-no' class='hidden module'>
+						<p>A Certificate of Use will be issued to you as part of the short-term event permitting process.</p>
 					</div>
 				
 				</div>
@@ -134,21 +137,23 @@
 				
 					<h1>Do you plan on closing a street?</h1>
 					
-					<span class='button' id='street-yes'>Yes, a residential street.</span> <!-- [SHOW D/D1, HIDE D2/D3] -->
+					<span class='button' id='street-yes'>Yes, a residential street.</span> <!-- [SHOW street-yes, HIDE D2/D3] -->
 					<span class='button' id='street-yesAgain'>Yes, a larger road, like a state road.</span> <!-- [SHOW D/D2/D3, HIDE D1] -->
 					<span class='button' id='street-no'>No, I'm not closing any streets or roads.</span> <!-- [HIDE D] -->
 					
 					<div id='street-yes' class='hidden module'>
-						<p>Are you going to close a street? If so, you’ll have to contact the Public Works department. <!-- add contact info --> </p>
+						<p>Are you going to close a street? If so, you’ll have to contact the Public Works department. <!-- add contact info --></p>
+						
+						<p>If you would like to temporary close a residential street for non-commercial purposes, you can apply for a block party permit. Block party permits are issued for free but come with conditions: street closures are only allowed during the day, and tables, tents or structures are not permitted on the street. </p>
 					</div>
 					
 					<div id='street-yesAgain' class='hidden module'>
-						<p>If you would like to temporary close a residential street for non-commercial purposes, you can apply for a block party permit. Block party permits are issued for free but come with conditions: street closures are only allowed during the day, and tables, tents or structures are not permitted on the street.</p>
+						<p>If a larger road closure is necessary, you’ll need to work with a licensed engineer to provide a Maintenance of Traffic (MOT) plan, and submit that to the Public Works department.
+	If you would like to close a state road, you’ll need to get a Special Events Permit from the Florida Department of Transportation (FDOT).</p>
 					</div>
 					
 					<div id='street-no' class='hidden module'>
-						<p>If a larger road closure is necessary, you’ll need to work with a licensed engineer to provide a Maintenance of Traffic (MOT) plan, and submit that to the Public Works department.
-	If you would like to close a state road, you’ll need to get a Special Events Permit from the Florida Department of Transportation (FDOT).</p>
+						<p>Great! Carry on.</p>
 					</div>
 					
 					<div id='D3' class='hidden module'>
