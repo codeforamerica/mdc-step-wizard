@@ -85,9 +85,10 @@ $(document).ready(function() {
 			
 	})
 	
-	$('.button#public-yes').click(function(e) {
+	$('#public-yes.button').click(function(e) {
 		
-		$('#public-yes').removeClass('hidden');
+		console.log('public!');
+		$('#public-with-structures #public-yes').removeClass('hidden');
 		//$('.button#public-no').addClass('hidden');
 		
 	})
