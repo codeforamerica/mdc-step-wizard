@@ -39,121 +39,35 @@
 		<header>
 		</header>
 	
-		<div id='container' class='row'>
+		<div id='container'>
 			
-			<div class='left six columns question'>
+			<section id='address' class='row'>
 				
-				<section id='address'>
-						
-						<div>
-							<h1>Do you know the address of where you’ll have the event?</h1>
-							<span class='button' id='address-yes'>Yes!</span> <!-- show AmIinMiami -->									<span class='button' id='address-no'>No.</span>
-						</div>
-						
-						<div class='hidden' id='umsa'>
-						
-							<h2>Is your event being held in unincorporated Miami-Dade County?</h2>										<span class='button' id='umsa-yes'>Yes!</span> <!-- hide not-in-umsa -->
-							<span class='button' id='umsa-no'>No.</span> <!-- show not-in-umsa -->
-							<span class='button' id='umsa-notSure'>I'm not sure.</span> <!-- Go where? -->
-						
-						</div>
-						
-						<div class='hidden' id='county-parks'>
-							
-							<h2>Is your event being held in a county park?</h2>
-							<span class='button' id='park-yes'>Yes.</span> <!-- show not-in-umsa -->
-							<span class='button' id='park-no'>No.</span> <!-- Go where? -->
-							
-						</div>
-					
-					</section>
-					
-				<section id='public-with-structures' class='hidden'>
-					
+				<div class='six columns question'>
 					<div>
+						<h1>Do you know the address of where you’ll have the event?</h1>
+						<span class='button' id='address-yes'>Yes!</span> <!-- show AmIinMiami -->									<span class='button' id='address-no'>No.</span>
+					</div>
 						
-						<h1>Will your event be open to the public, and use temporary structures?</h1>
+					<div class='hidden' id='umsa'>
 						
-						<span class='button' id='public-yes'>Yes!</span> <!-- [SHOW SHORT-TERM, HIDE SPECIAL/UMSA-AND-SPECIAL] -->
-						<span class='button' id='public-no'>No.</span> <!-- [SHOW SPECIAL/UMSA-AND-SPECIAL, HIDE UMSA-AND-SHORT-TERM] -->
-						<span class='button' id='public-whatIs'>What's a "temporary structure?"</span> <!-- Go where? -->
+						<h2>Is your event being held in unincorporated Miami-Dade County?</h2>										<span class='button' id='umsa-yes'>Yes!</span> <!-- hide not-in-umsa -->
+						<span class='button' id='umsa-no'>No.</span> <!-- show not-in-umsa -->
+						<span class='button' id='umsa-notSure'>I'm not sure.</span> <!-- Go where? -->
 						
 					</div>
 						
-				</section>
-				
-				<section id='certificate-of-use' class='hidden'>
-					
-					<div>
-						
-						<h1>Do you already have a Certificate of Use (CU)?</h1>
-						<p>A Certificate of Use (formerly known as a Zoning Permit) is required and guarantees the business is allowed in the zoning district where it is located. There are three types of CUs: permanent, temporary and special.</p>
-						
-						<span class='button' id='cu-yes'>Yes!</span> <!-- [SHOW A] -->
-						<span class='button' id='cu-no'>No.</span> <!-- [HIDE A] -->
-						<span class='button' id='cu-notSure'>I'm not sure.</span> <!-- Go where? -->
-						
+					<div class='hidden' id='county-parks'>
+							
+						<h2>Is your event being held in a county park?</h2>
+						<span class='button' id='park-yes'>Yes.</span> <!-- show not-in-umsa -->
+						<span class='button' id='park-no'>No.</span> <!-- Go where? -->
+							
 					</div>
-					
-				</section>
+						
+				</div>
 				
-				<section id='street-closure' class='hidden'>
-						
-						<div>
-						
-							<h1>Do you plan on closing a street?</h1>
-							
-							<span class='button' id='street-yes'>Yes, a residential street.</span> <!-- [SHOW street-yes, HIDE D2/D3] -->
-							<span class='button' id='street-yesAgain'>Yes, a larger road, like a state road.</span> <!-- [SHOW D/D2/D3, HIDE D1] -->
-							<span class='button' id='street-no'>No, I'm not closing any streets or roads.</span> <!-- [HIDE D] -->
-							
-						</div>
-						
-					</section>
-					
-				<section id='special-types' class='hidden'>
-						
-						<div>
-						
-							<h1>Let's talk about event types. Do any of the following apply to your event?</h1>
-							
-							<span class='button' id='type-sale'>I'm selling Christmas trees, pumpkins, or sparklers.</span> <!-- [SHOW B1, HIDE F/B2/B3] -->
-							<span class='button' id='type-carnival'>My event would be considered a carnival or a tent revival.</span> <!--  [SHOW B2, HIDE F/B1/B3] -->
-							<span class='button' id='type-assembly'>My event would be considered an assembly, circus or sporting event.</span> <!-- [SHOW F/B3, HIDE B1/B2] -->
-			
-						</div>
-						
-					</section>
-					
-				<section id='health' class='hidden'>
-						
-						<div>
-							
-							<h1>Now let's talk about public health. Do any of the following apply to your event?</h1>
-							
-							<span class='button' id='health-restroom'>I will be providing portable restrooms.</span> <!-- [SHOW C] -->
-							<span class='button' id='health-restroom'>I will be providing portable OR stationary holding tanks.</span> <!--  [SHOW C] -->
-							<span class='button' id='health-foodtrucks'>My event will have food trucks present.</span> <!-- [SHOW C2/hide C1, C] -->
-							<span class='button' id='health-foodsales'>I will be selling food on the premises.</span> <!-- [SHOW C1] -->
-							<span class='button' id='health-none'>None of these apply.</span>
-							
-							
-						</div>
-						
-					</section>
-					
-				<section id='finished' class='hidden'>
-						
-						<h1>You're done! You should now have all of the information you need to apply for a short-term events permit -- or not.</h1>
-					</section>
-
-			</div>
-			
-			<!-------------- right column ------------------->
-			
-			<div class='right six columns answer'>
-				
-				<section id='address'>
+				<div class='six columns answer'>
 					
 					<!-- address-search -->
 					<form id='address' class='hidden'>
@@ -176,9 +90,23 @@
 						
 					</div>
 					
-				</section>
+				</div>
 				
-				<section id='public-with-structures'>
+			</section>
+			
+			<section id='public-with-structures' class='row'>
+				
+				<div class='six columns question'>
+					
+					<h1>Will your event be open to the public, and use temporary structures?</h1>
+						
+					<span class='button' id='public-yes'>Yes!</span> <!-- [SHOW SHORT-TERM, HIDE SPECIAL/UMSA-AND-SPECIAL] -->
+					<span class='button' id='public-no'>No.</span> <!-- [SHOW SPECIAL/UMSA-AND-SPECIAL, HIDE UMSA-AND-SHORT-TERM] -->
+					<span class='button' id='public-whatIs'>What's a "temporary structure?"</span> <!-- Go where? -->
+						
+				</div>
+				
+				<div class='six columns answer'>
 					
 					<div id='public-yes' class='hidden module'>
 						
@@ -203,11 +131,25 @@
 					<div id='public-no' class='hidden module'>
 						<p>As your event doesn’t require temporary structures, you can apply for a more general special events permit instead. [WIZARD END]</p> <!-- how? -->
 					</div>
-
-
-				</section>
+					
+				</div>
 				
-				<section id='certificate-of-use' class='hidden'>
+			</section>
+			
+			<section id='certificate-of-use' class='row'>
+				
+				<div class='six columns question'>
+					
+					<h1>Do you already have a Certificate of Use (CU)?</h1>
+					<p>A Certificate of Use (formerly known as a Zoning Permit) is required and guarantees the business is allowed in the zoning district where it is located. There are three types of CUs: permanent, temporary and special.</p>
+						
+					<span class='button' id='cu-yes'>Yes!</span> <!-- [SHOW A] -->
+					<span class='button' id='cu-no'>No.</span> <!-- [HIDE A] -->
+					<span class='button' id='cu-notSure'>I'm not sure.</span> <!-- Go where? -->
+
+				</div>
+				
+				<div class='six columns answer'>
 					
 					<div id='cu-yes' class='hidden module'>
 						<p>Great! You're ready to move on.</p>
@@ -217,9 +159,23 @@
 						<p>A Certificate of Use will be issued to you as part of the short-term event permitting process.</p>
 					</div>
 					
-				</section>
+				</div>
 				
-				<section class='hidden'>
+			</section>
+			
+			<section id='street-closure' class='row'>
+				
+				<div class='six columns question'>
+					
+					<h1>Do you plan on closing a street?</h1>
+					<span class='button' id='street-yes'>Yes, a residential street.</span> <!-- [SHOW street-yes, HIDE D2/D3] -->
+					<span class='button' id='street-yesAgain'>Yes, a larger road, like a state road.</span> <!-- [SHOW D/D2/D3, HIDE D1] -->
+					<span class='button' id='street-no'>No, I'm not closing any streets or roads.</span> <!-- [HIDE D] -->
+
+				</div>
+				
+				<div class='six columns answer'>
+					
 					<div id='street-yes' class='hidden module'>
 						<p>You'll need to call Public Works. <!-- add contact info --></p>
 						
@@ -236,9 +192,25 @@
 					<div id='street-no' class='hidden module'>
 						<p>Great! Carry on.</p>
 					</div>
-				</section>
+					
+				</div>
 				
-				<section id='special-types' class='hidden'>
+			</section>
+			
+			<section id='special-types' class='row'>
+				
+				<div class='six columns question'>
+					
+					<h1>Let's talk about event types. Do any of the following apply to your event?</h1>
+							
+						<span class='button' id='type-sale'>I'm selling Christmas trees, pumpkins, or sparklers.</span> <!-- [SHOW B1, HIDE F/B2/B3] -->
+						<span class='button' id='type-carnival'>My event would be considered a carnival or a tent revival.</span> <!--  [SHOW B2, HIDE F/B1/B3] -->
+						<span class='button' id='type-assembly'>My event would be considered an assembly, circus or sporting event.</span> <!-- [SHOW F/B3, HIDE B1/B2] -->
+
+				</div>
+				
+				<div class='six columns answer'>
+					
 					<div id='type-sale' class='hidden module'>
 						[B1]
 	Have you examined the MDFR safety inspection checklist for selling Christmas trees or sparklers?
@@ -265,9 +237,26 @@
 	[/F]
 
 					</div>
-				</section>
+					
+				</div>
 				
-				<section class='hidden'>
+			</section>
+			
+			<section id='health' class='row'>
+				
+				<div class='six columns question'>
+					
+					<h1>Now let's talk about public health. Do any of the following apply to your event?</h1>
+					<span class='button' id='health-restroom'>I will be providing portable restrooms.</span> <!-- [SHOW C] -->
+					<span class='button' id='health-restroom'>I will be providing portable OR stationary holding tanks.</span> <!--  [SHOW C] -->
+					<span class='button' id='health-foodtrucks'>My event will have food trucks present.</span> <!-- [SHOW C2/hide C1, C] -->
+					<span class='button' id='health-foodsales'>I will be selling food on the premises.</span> <!-- [SHOW C1] -->
+					<span class='button' id='health-none'>None of these apply.</span>
+							
+				</div>
+				
+				<div class='six columns answer'>
+					
 					<div id='health-restroom' class='hidden module'>
 						Will you need to reach out to the Florida State Department of Health? 
 	You’ll need to get approval from the Health Department if your event will have portable restrooms or portable/stationary holding tanks. 
@@ -284,8 +273,15 @@
 					<div id='health-none' class='hidden module'>
 						<p>You don't need to call the Health Department!</p>
 					</div>
-				</section>
-			</div>
+				</div>
+				
+			</section>
+						
+			<section id='finished' class='row hidden'>
+						
+				<h1>You're done! You should now have all of the information you need to apply for a short-term events permit -- or not.</h1>
+			
+			</section>
 			
 					
 		<!--
