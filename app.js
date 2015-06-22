@@ -29,6 +29,9 @@ $(document).ready(function() {
 		
 		e.preventDefault();
 		$('#umsa').removeClass('hidden');
+		$('#no-address').removeClass('hidden');
+		$('#no-address .response').text("You don't have an address for your event yet.");
+		$('form#address').addClass('hidden');
 	})
 	
 	$('#umsa-yes').click(function(e) {

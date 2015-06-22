@@ -41,29 +41,38 @@
 	
 		<div id='container'>
 			
-			<section id='address' class='row'>
+			<section id='address'>
 				
-				<div class='six columns question'>
-					<div>
-						<h1>Do you know the address of where you’ll have the event?</h1>
-						<span class='button' id='address-yes'>Yes!</span> <!-- show AmIinMiami -->									<span class='button' id='address-no'>No.</span>
-					</div>
+				<div class='row'>
+					
+					<h2 class='row bold'>First, we need to know where your event will be held.</h2>
+				
+				</div>
+				
+				<div class='row'>
+					
+					<div class='six columns question'>
 						
-					<div class='hidden' id='umsa'>
-						
-						<h2>Is your event being held in unincorporated Miami-Dade County?</h2>										<span class='button' id='umsa-yes'>Yes!</span> <!-- hide not-in-umsa -->
-						<span class='button' id='umsa-no'>No.</span> <!-- show not-in-umsa -->
-						<span class='button' id='umsa-notSure'>I'm not sure.</span> <!-- Go where? -->
-						
-					</div>
-						
-					<div class='hidden' id='county-parks'>
+						<div>
+							<h4>Do you know the address of where you’ll have the event?</h1>
+							<span class='button' id='address-yes'>Yes!</span> <!-- show AmIinMiami -->									<span class='button' id='address-no'>No.</span>
+						</div>
 							
-						<h2>Is your event being held in a county park?</h2>
-						<span class='button' id='park-yes'>Yes.</span> <!-- show not-in-umsa -->
-						<span class='button' id='park-no'>No.</span> <!-- Go where? -->
+						<div class='hidden' id='umsa'>
 							
-					</div>
+							<h4>Is your event being held in unincorporated Miami-Dade County?</h2>										<span class='button' id='umsa-yes'>Yes!</span> <!-- hide not-in-umsa -->
+							<span class='button' id='umsa-no'>No.</span> <!-- show not-in-umsa -->
+							<span class='button' id='umsa-notSure'>I'm not sure.</span> <!-- Go where? -->
+							
+						</div>
+							
+						<div class='hidden' id='county-parks'>
+								
+							<h4>Is your event being held in a county park?</h2>
+							<span class='button' id='park-yes'>Yes.</span> <!-- show not-in-umsa -->
+							<span class='button' id='park-no'>No.</span> <!-- Go where? -->
+								
+						</div>
 						
 				</div>
 				
@@ -85,8 +94,9 @@
 						
 					</div>
 					
-					<div id='aiim-returns-muni'>
+					<div id='no-address' class='hidden'>
 						
+						<span class='response'></span>
 						
 					</div>
 					
