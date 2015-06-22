@@ -148,6 +148,11 @@ $(document).ready(function() {
 		$('#health').removeClass('hidden');
 	})
 	
+	$('#health .button').click(function(e) {
+		
+		
+		$('#finished').removeClass('hidden');
+	})
 	
 	
 	
