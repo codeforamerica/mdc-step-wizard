@@ -43,6 +43,7 @@ $(document).ready(function() {
 	$('#umsa-no').click(function(e) {
 		
 		e.preventDefault();
+		$('#finished-do-not-apply').removeClass('hidden');
 		console.log("END THE WIZARD");
 	})
 	
