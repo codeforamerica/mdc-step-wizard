@@ -73,15 +73,21 @@ $(document).ready(function() {
 		
 		var addy = $('input#input-address').val();
 		
+		//logic check to make sure that there's actually a value
+		if(addy.length > 0) {
+			
 			$("#address-value").removeClass('hidden');
 			$("#address-value .value").text(addy);
-		
-		console.log('addy: ', addy);
-		
-		//logic check to make sure that there's actually a value
-
-		codeAddress(addy);
-		
+			codeAddress(addy);
+			
+			console.log('addy: ', $.type(addy), addy.length);
+			
+		} else {
+			
+			//what if there's no value? Error message.
+			console.log("ERROR: no address entered");
+		}
+			
 	})
 	
 	$('.button#public-yes').click(function(e) {
