@@ -50,12 +50,14 @@ $(document).ready(function() {
 	$('#umsa-notSure').click(function(e) {
 		
 		e.preventDefault();
+		$('#finished-not-sure').removeClass('hidden');
 		console.log("END THE WIZARD");
 	})
 	
 	$('#park-yes').click(function(e) {
 		
 		e.preventDefault();
+		$('#finished-park').removeClass('hidden');
 		console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
 	})
 	
@@ -161,7 +163,7 @@ $(document).ready(function() {
 	$('#health .button').click(function(e) {
 		
 		
-		$('#finished').removeClass('hidden');
+		$('#finished-success').removeClass('hidden');
 	})
 	
 	
