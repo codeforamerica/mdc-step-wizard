@@ -70,7 +70,11 @@ $(document).ready(function() {
 	$('#submit-address').click(function(e) {
 		
 		e.preventDefault();
+		
 		var addy = $('input#input-address').val();
+		
+			$("#address-value").removeClass('hidden');
+			$("#address-value .value").text(addy);
 		
 		console.log('addy: ', addy);
 		
@@ -156,12 +160,6 @@ $(document).ready(function() {
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	function codeAddress(address) {
 		
 	   var lat;
@@ -221,6 +219,7 @@ $(document).ready(function() {
 	
 	function showUMSA() {
 		
+		console.log('show UMSA:', municipality);
 		if(municipality != 'UMSA') {
 			
 			$('#umsa').removeClass('hidden');
