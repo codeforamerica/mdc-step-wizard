@@ -17,39 +17,6 @@ $(document).ready(function() {
 
   	initialize();
 	
-	$('.button').click(function(e) {
-		
-		e.preventDefault();
-		
-		var id = $(this).attr('id');
-			//console.log(id);
-			
-		showModule(id);
-	})
-	
-	function showModule(id) {
-		
-		//console.log('show module:', $('.module'));
-		
-		//hide unhidden modules
-		$('.module').each(function() {
-			
-			//console.log($(this), ' o hai');
-			if( $(this).hasClass('.hidden') == false ) {
-			
-				console.log('module not hidden');
-			}
-			
-			if($(this).attr('id') == id) {
-				
-				$(this).removeClass('hidden');
-				console.log('show me!', $(this).attr('id'))	
-			
-			}
-		});
-		
-	}
-	
 	//geocoding -- UMSA or not? buttons
 	$('#address-yes').click(function(e){
 		
@@ -61,11 +28,39 @@ $(document).ready(function() {
 	$('#address-no').click(function(e) {
 		
 		e.preventDefault();
-		
-		
-		municipality = 'miami';
-		showUMSA();
+		$('#umsa').removeClass('hidden');
 	})
+	
+	$('#umsa-yes').click(function(e) {
+		
+		e.preventDefault();
+		$('#county-parks').removeClass('hidden');
+	})
+	
+	$('#umsa-no').click(function(e) {
+		
+		e.preventDefault();
+		console.log("END THE WIZARD");
+	})
+	
+	$('#umsa-notSure').click(function(e) {
+		
+		e.preventDefault();
+		console.log("END THE WIZARD");
+	})
+	
+	$('#park-yes').click(function(e) {
+		
+		e.preventDefault();
+		console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
+	})
+	
+	$('#park-no').click(function(e) {
+		
+		e.preventDefault();
+		$("#public-with-structures").removeClass('hidden');
+	})
+	
 	
 	$('#submit-address').click(function(e) {
 		
@@ -226,18 +221,27 @@ $(document).ready(function() {
 	function showUMSA() {
 		
 		console.log('show UMSA:', municipality);
+		
+		var txt = $('#address-value .value').text();
+		console.log('the address is:' , txt);
+		
 		if(municipality != 'UMSA') {
 			
 			$('#umsa').removeClass('hidden');
 			$('form#address').addClass('hidden');	//in case someone hit 'yes' first.
+			txt += '<br>This address is not in unincorporated Miami-Dade County.';
 		
 		} else {
 			
 			console.log('you are in umsa. continue.');
 			//need a check for county park here.
 			
-			$('#public-with-structures').removeClass('hidden');
+			//$('#public-with-structures').removeClass('hidden');
+			txt += '<br>This address is located in unincorporated Miami-Dade County.';
 		}
+		
+		$('#county-parks').removeClass('hidden');
+		$('#address-value .value').text(txt);
 	}
 	
 	
