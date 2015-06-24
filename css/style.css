@@ -36,3 +36,9 @@ section:last-child {
 	background-color:blue;
 	color:white !important;
 }
+
+.six {
+	
+	border:1px solid purple;
+	min-height:150px;
+}
