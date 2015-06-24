@@ -5,6 +5,25 @@
 	font-weight:bold;
 }
 
+/* END TYPOGRAPHY */
+
+header {
+	
+	width:100%;
+	background-color: #4BC3FF;
+	color:white;
+	padding-top:30px;
+	padding-bottom:20px;
+	margin-bottom:20px;
+}
+
+header div {
+	
+	width:80%;
+	text-align: center;
+	margin:0 auto;
+}
+
 .hidden {
 	
 	display:none;

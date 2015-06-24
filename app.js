@@ -367,6 +367,7 @@ $(document).ready(function() {
 		
 		$('.finished').each(function() {
 			
+			console.log('hiding finished');
 			$(this).addClass('hidden');
 		})
 	}
