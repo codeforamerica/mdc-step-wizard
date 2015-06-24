@@ -111,15 +111,19 @@
 				
 				<div class='six columns question'>
 					
-					<h1>Will your event be open to the public, and use temporary structures?</h1>
+					<div id='temp-structures'>
+						<h4>Will your event be open to the public, and use temporary structures?</h4>
 						
-					<span class='button' id='public-yes'>Yes!</span> <!-- [SHOW SHORT-TERM, HIDE SPECIAL/UMSA-AND-SPECIAL] -->
-					<span class='button' id='public-no'>No.</span> <!-- [SHOW SPECIAL/UMSA-AND-SPECIAL, HIDE UMSA-AND-SHORT-TERM] -->
-					<span class='button' id='public-whatIs'>What's a "temporary structure?"</span> <!-- Go where? -->
+						<span class='button' id='public-yes'>Yes!</span> <!-- [SHOW SHORT-TERM, HIDE SPECIAL/UMSA-AND-SPECIAL] -->
+						<span class='button' id='public-no'>No.</span> <!-- [SHOW SPECIAL/UMSA-AND-SPECIAL, HIDE UMSA-AND-SHORT-TERM] -->
+						<span class='button' id='public-whatIs'>What's a "temporary structure?"</span> <!-- Go where? -->
+					</div>
 					
-					<h4>Will you have a tent with a capacity for more than 300 people?</h4>
-					<span class='button' id='tent-yes'>Yes</span> <! -- SHOW B -->
-					<span class='button' id='tent-no'>No.</span> <!-- HIDE B -->
+					<div id='300-plus' class='hidden'>
+						<h4>Will you have a tent with a capacity for more than 300 people?</h4>
+						<span class='button' id='tent-yes'>Yes</span> <! -- SHOW B -->
+						<span class='button' id='tent-no'>No.</span> <!-- HIDE B -->
+					</div>
 						
 				</div>
 				
@@ -143,10 +147,17 @@
 					</div>
 					
 					<!-- <div id='public-no' class='hidden module'>
-						<p>As your event doesn’t require temporary structures, you can apply for a more general special events permit instead. [WIZARD END]</p> how? -->
-					</div>
+						<p>As your event doesn’t require temporary structures, you can apply for a more general special events permit instead. [WIZARD END]</p> how? 
+					</div>-->
 					
 				</div>
+				
+			</section>
+			
+			<section id='temporary-structure-definition' class='hidden alert'>
+				
+				<h4>Temporary Structures</h4>
+				<p>A temporary structure is defined as x, y, z.</p>
 				
 			</section>
 			

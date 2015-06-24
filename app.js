@@ -114,17 +114,19 @@ $(document).ready(function() {
 		
 		console.log('public!');
 		$('#public-with-structures #public-yes').removeClass('hidden');
+		$('#300-plus').removeClass('hidden');
 		//$('.button#public-no').addClass('hidden');
 		
 	})
 	
 	$('.button#public-no').click(function(e) {
 		
-	//	$('#public-no').removeClass('hidden');
-		$('.button#public-yes').addClass('hidden');
+		//$('#public-no').removeClass('hidden');
+		//$('.button#public-yes').addClass('hidden');
 		$('div#tent-yes').addClass('hidden');
 		
 		$('#finished-no-structure').removeClass('hidden');
+		$('#300-plus').addClass('hidden');	
 		
 		//this ends the wizard. indicate that. 
 		
@@ -133,6 +135,7 @@ $(document).ready(function() {
 	$('.button#public-whatIs').click(function(e) {
 		
 		console.log("what is a temporary structure?");
+		$('#temporary-structure-definition').removeClass('hidden');
 		
 	})
 	
