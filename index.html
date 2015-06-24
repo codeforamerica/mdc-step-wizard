@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="jquery.js"></script>
     <script src='app.js' type="text/javascript"></script>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzCsQTTBA7AbrjxE6R5vwnZkL0q7Ev48Q">
@@ -54,13 +55,13 @@
 					<div class='six columns question'>
 						
 						<div>
-							<h4>Do you know the address of where you’ll have the event?</h1>
+							<h4>Do you know the address of where you’ll have the event?</h4>
 							<span class='button' id='address-yes'>Yes!</span> <!-- show AmIinMiami -->									<span class='button' id='address-no'>No.</span>
 						</div>
 							
 						<div class='hidden' id='umsa'>
 							
-							<h4>Is your event being held in unincorporated Miami-Dade County?</h2>										<span class='button' id='umsa-yes'>Yes!</span> <!-- hide not-in-umsa -->
+							<h4>Is your event being held in unincorporated Miami-Dade County?</h4>										<span class='button' id='umsa-yes'>Yes!</span> <!-- hide not-in-umsa -->
 							<span class='button' id='umsa-no'>No.</span> <!-- show not-in-umsa -->
 							<span class='button' id='umsa-notSure'>I'm not sure.</span> <!-- Go where? -->
 							
@@ -68,7 +69,7 @@
 							
 						<div class='hidden' id='county-parks'>
 								
-							<h4>Is your event being held in a county park?</h2>
+							<h4>Is your event being held in a county park?</h4>
 							<span class='button' id='park-yes'>Yes.</span> <!-- show not-in-umsa -->
 							<span class='button' id='park-no'>No.</span> <!-- Go where? -->
 								
@@ -76,7 +77,7 @@
 						
 				</div>
 				
-				<div class='six columns answer'>
+					<div class='six columns answer'>
 					
 					<!-- address-search -->
 					<form id='address' class='hidden'>
@@ -101,6 +102,8 @@
 					</div>
 					
 				</div>
+					
+				</div>
 				
 			</section>
 			
@@ -113,6 +116,10 @@
 					<span class='button' id='public-yes'>Yes!</span> <!-- [SHOW SHORT-TERM, HIDE SPECIAL/UMSA-AND-SPECIAL] -->
 					<span class='button' id='public-no'>No.</span> <!-- [SHOW SPECIAL/UMSA-AND-SPECIAL, HIDE UMSA-AND-SHORT-TERM] -->
 					<span class='button' id='public-whatIs'>What's a "temporary structure?"</span> <!-- Go where? -->
+					
+					<h4>Will you have a tent with a capacity for more than 300 people?</h4>
+					<span class='button' id='tent-yes'>Yes</span> <! -- SHOW B -->
+					<span class='button' id='tent-no'>No.</span> <!-- HIDE B -->
 						
 				</div>
 				
@@ -123,23 +130,20 @@
 						<p>Ok! We've verified that you <b>do</b> need a Short-Term Events Permit (STEP).</p>
 						
 						<p>You’ll need a Short-Term Events Permit if your event is open to the public and if your event has temporary structures, including tents (above a 10' x 12' threshold), bleachers, stages, specialty wiring, rides, lifts, and ramps, non-portable ventilation systems or enclosed cooking facilities.</p>
+					</div>
 						
-						<h2>Will you have a tent with a capacity for more than 300 people?</h2>
-						<span class='button' id='tent-yes'>Yes</span> <! -- SHOW B -->
-						<span class='button' id='tent-no'>No.</span> <!-- HIDE B -->
+					<div id='tent-yes' class='hidden module'>
+						<p>All temporary structures (tents) that can hold more than 300 occupants require Miami-Dade Fire and Rescue’s Fire Watch (MDFR) present for the duration of the event. Fire Watch can be set up by calling MDFR Special Events at (786) 331-4438.</p>
+					</div>
 						
-						<div id='tent-yes' class='hidden module'>
-						Do you plan on having more than 300 people inside a temporary tent? All temporary tents with more than 300 occupants require Miami-Dade Fire Rescue’s Fire Watch (MDFR) present for the duration of the event. Fire Watch can be set up by calling MDFR Special Events at (786) 331-4438. 
-						</div>
-						
-						<div id='tent-no' class='hidden module'>
-							<p>Great! Since you're not using a tent, at this point you don't need to talk to MDFR. Remember, though, you may need Fire and Rescue for other services.</p>
-						</div>
+					<div id='tent-no' class='hidden module'>
+						<p>Great! Since you're not using a tent, at this point you don't need to talk to MDFR. Remember, though, you may need Fire and Rescue for other services.</p>
+					</div>
 						
 					</div>
 					
-					<div id='public-no' class='hidden module'>
-						<p>As your event doesn’t require temporary structures, you can apply for a more general special events permit instead. [WIZARD END]</p> <!-- how? -->
+					<!-- <div id='public-no' class='hidden module'>
+						<p>As your event doesn’t require temporary structures, you can apply for a more general special events permit instead. [WIZARD END]</p> how? -->
 					</div>
 					
 				</div>
@@ -314,7 +318,12 @@
 			
 			</section>
 			
-			
+			<section id='finished-no-structure' class='row hidden'>
+				
+				<h1>You need a special events permit!</h1>
+				<p>Because you won't have temporary structures, you can get a more general special events permit instead of a short-term events permit. Please contact WHO???</p>
+				
+			</section>
 			
 					
 		<!--

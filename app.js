@@ -17,11 +17,30 @@ $(document).ready(function() {
 
   	initialize();
 	
+	//button states
+	$('.button').click(function(e) {
+		
+		e.preventDefault();
+		buttonReset();
+		$(this).addClass('active');	
+	})
+	
+	//still broken
+	function buttonReset() {
+		
+		$('.button').each(function() {
+			
+			$(this).removeClass('active');
+		})
+	}
+	
 	//geocoding -- UMSA or not? buttons
 	$('#address-yes').click(function(e){
 		
 		e.preventDefault();
 		$('form#address').removeClass('hidden');
+		$('#no-address').addClass('hidden');
+		$('#umsa').addClass('hidden');
 		
 	})
 	
@@ -101,9 +120,11 @@ $(document).ready(function() {
 	
 	$('.button#public-no').click(function(e) {
 		
-		$('#public-no').removeClass('hidden');
+	//	$('#public-no').removeClass('hidden');
 		$('.button#public-yes').addClass('hidden');
 		$('div#tent-yes').addClass('hidden');
+		
+		$('#finished-no-structure').removeClass('hidden');
 		
 		//this ends the wizard. indicate that. 
 		
