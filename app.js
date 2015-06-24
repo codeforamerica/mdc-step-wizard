@@ -62,6 +62,7 @@ $(document).ready(function() {
 	$('#umsa-no').click(function(e) {
 		
 		e.preventDefault();
+		showFinished();
 		$('#finished-do-not-apply').removeClass('hidden');
 		console.log("END THE WIZARD");
 	})
@@ -85,7 +86,6 @@ $(document).ready(function() {
 		e.preventDefault();
 		$("#public-with-structures").removeClass('hidden');
 	})
-	
 	
 	$('#submit-address').click(function(e) {
 		
@@ -277,6 +277,9 @@ $(document).ready(function() {
 		
 	})
 	
+	
+	//end repetitive buttons
+	
 	function codeAddress(address) {
 		
 	   var lat;
@@ -358,6 +361,19 @@ $(document).ready(function() {
 		
 		$('#county-parks').removeClass('hidden');
 		$('#address-value .value').text(txt);
+	}
+	
+	function showFinished() {
+		
+		$('.finished').each(function() {
+			
+			$(this).addClass('hidden');
+		})
+	}
+	
+	function changed() {
+		
+		console.log("something was unhidden!");
 	}
 	
 	
