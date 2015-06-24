@@ -22,7 +22,8 @@ $(document).ready(function() {
 		
 		e.preventDefault();
 		buttonReset();
-		$(this).addClass('active');	
+		$(this).addClass('active');
+		showModules($(this).attr('id'));	
 	})
 	
 	//still broken
@@ -34,249 +35,230 @@ $(document).ready(function() {
 		})
 	}
 	
-	//geocoding -- UMSA or not? buttons
-	$('#address-yes').click(function(e){
+	function showModules(buttonID) {
 		
-		e.preventDefault();
-		$('form#address').removeClass('hidden');
-		$('#no-address').addClass('hidden');
-		$('#umsa').addClass('hidden');
-		
-	})
-	
-	$('#address-no').click(function(e) {
-		
-		e.preventDefault();
-		$('#umsa').removeClass('hidden');
-		$('#no-address').removeClass('hidden');
-		$('#no-address .response').text("You don't have an address for your event yet.");
-		$('form#address').addClass('hidden');
-	})
-	
-	$('#umsa-yes').click(function(e) {
-		
-		e.preventDefault();
-		$('#county-parks').removeClass('hidden');
-	})
-	
-	$('#umsa-no').click(function(e) {
-		
-		e.preventDefault();
-		showFinished();
-		$('#finished-do-not-apply').removeClass('hidden');
-		console.log("END THE WIZARD");
-	})
-	
-	$('#umsa-notSure').click(function(e) {
-		
-		e.preventDefault();
-		$('#finished-not-sure').removeClass('hidden');
-		console.log("END THE WIZARD");
-	})
-	
-	$('#park-yes').click(function(e) {
-		
-		e.preventDefault();
-		$('#finished-park').removeClass('hidden');
-		console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
-	})
-	
-	$('#park-no').click(function(e) {
-		
-		e.preventDefault();
-		$("#public-with-structures").removeClass('hidden');
-	})
-	
-	$('#submit-address').click(function(e) {
-		
-		e.preventDefault();
-		
-		var addy = $('input#input-address').val();
-		
-		//logic check to make sure that there's actually a value
-		if(addy.length > 0) {
+		console.log('show module: ', buttonID);
+		switch(buttonID) {
 			
-			$("#address-value").removeClass('hidden');
-			$("#address-value .value").text(addy);
-			codeAddress(addy);
+			case 'address-yes':
+				$('form#address').removeClass('hidden');
+				$('#no-address').addClass('hidden');
+				$('#umsa').addClass('hidden');
+				break;
+				
+			case 'address-no':
+				$('#umsa').removeClass('hidden');
+				$('#no-address').removeClass('hidden');
+				$('#no-address .response').text("You don't have an address for your event yet.");
+				$('form#address').addClass('hidden');
+				break;
+				
+			case 'umsa-yes':
+				
+				$('#county-parks').removeClass('hidden');
+				break;
+				
+			case 'umsa-no':
 			
-			console.log('addy: ', $.type(addy), addy.length);
+				showFinished();
+				$('#finished-do-not-apply').removeClass('hidden');
+				console.log("END THE WIZARD");
+				break;
 			
-		} else {
+			case 'umsa-notSure':
 			
-			//what if there's no value? Error message.
-			console.log("ERROR: no address entered");
+				$('#finished-not-sure').removeClass('hidden');
+				console.log("END THE WIZARD");
+				break;
+			
+			case 'park-yes':
+			
+				$('#finished-park').removeClass('hidden');
+				console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
+				break;
+				
+			case 'park-no':
+			
+				$("#public-with-structures").removeClass('hidden');
+				break;
+			
+			case 'submit-address':
+				
+				e.preventDefault();
+		
+				var addy = $('input#input-address').val();
+				
+				//logic check to make sure that there's actually a value
+				if(addy.length > 0) {
+					
+					$("#address-value").removeClass('hidden');
+					$("#address-value .value").text(addy);
+					codeAddress(addy);
+					
+					console.log('addy: ', $.type(addy), addy.length);
+					
+				} else {
+					
+					//what if there's no value? Error message.
+					console.log("ERROR: no address entered");
+				}
+
+				break;
+			
+			case 'public-yes':
+			
+				console.log('public!');
+				$('#public-with-structures #public-yes').removeClass('hidden');
+				$('#300-plus').removeClass('hidden');
+				$('#temporary-structure-definition').addClass('hidden');
+				//$('.button#public-no').addClass('hidden');
+				break;
+			
+			case 'public-no':
+			
+				//$('#public-no').removeClass('hidden');
+				//$('.button#public-yes').addClass('hidden');
+				$('div#tent-yes').addClass('hidden');
+		
+				$('#finished-no-structure').removeClass('hidden');
+				$('#300-plus').addClass('hidden');	
+				$('#temporary-structure-definition').addClass('hidden');
+		
+				//this ends the wizard. indicate that. 
+				break;
+			
+			case 'public-whatIs':
+			
+				console.log("what is a temporary structure?");
+				$('#temporary-structure-definition').removeClass('hidden');
+				break;
+			
+			case 'tent-yes':
+			
+				$('div#tent-yes').removeClass('hidden');
+				$('#certificate-of-use').removeClass('hidden');
+				break;
+			
+			case 'tent-no':
+			
+				$('div#tent-yes').addClass('hidden');
+				$('div#tent-no').removeClass('hidden');
+				$('#certificate-of-use').removeClass('hidden');
+				break;
+			
+			case 'cu-no':
+			
+				$('div#cu-no').removeClass('hidden');
+				$('div#cu-yes').addClass('hidden');
+				$('#street-closure').removeClass('hidden');
+				break;
+			
+			case 'cu-yes':
+			
+				$('div#cu-yes').removeClass('hidden');
+				$('div#cu-no').addClass('hidden');
+				$('#street-closure').removeClass('hidden');
+				break;
+			
+			case 'street-yes':
+			
+				$('#special-types').removeClass('hidden');
+				$('div#street-yes').removeClass('hidden');
+				$('div#street-no').addClass('hidden');
+				$('div#street-yesAgain').addClass('hidden');
+				break;
+			
+			case 'street-yesAgain':
+			
+				$('#special-types').removeClass('hidden');
+				$('div#street-yesAgain').removeClass('hidden');
+				$('div#street-no').addClass('hidden');
+				$('div#street-yes').addClass('hidden');
+				break;
+			
+			case 'street-no':
+				
+				$('#special-types').removeClass('hidden');
+				$('div#street-yes').addClass("hidden");
+				$('div#street-yesAgain').addClass('hidden');
+				$('div#street-no').removeClass('hidden');
+				break;
+			
+			case 'type-sale':
+			
+				$('#health').removeClass('hidden');
+				$('div#type-sale').removeClass('hidden');
+				$('div#type-carnival').addClass('hidden');
+				$('div#type-assembly').addClass('hidden');
+				break;
+				
+				
+			case 'type-carnival':
+			
+				$('#health').removeClass('hidden');
+				$('div#type-sale').addClass('hidden');
+				$('div#type-carnival').removeClass('hidden');
+				$('div#type-assembly').addClass('hidden');
+				break;
+				
+				
+			case 'type-assembly':
+			
+				$('#health').removeClass('hidden');
+				$('div#type-sale').addClass('hidden');
+				$('div#type-carnival').addClass('hidden');
+				$('div#type-assembly').removeClass('hidden');
+				break;
+				
+			case 'health-restroom':
+			
+				$('div#health-restroom').removeClass('hidden');
+				$('div#health-foodsales').addClass('hidden');
+				$('div#health-foodtrucks').addClass('hidden');
+				$('div#health-none').addClass('hidden');
+				$('#finished-success').removeClass('hidden');
+				break;
+				
+			case 'health-tanks':
+			
+				$('div#health-restroom').removeClass('hidden');
+				$('div#health-foodsales').addClass('hidden');
+				$('div#health-foodtrucks').addClass('hidden');
+				$('div#health-none').addClass('hidden');
+				$('#finished-success').removeClass('hidden');
+				break;
+				
+			case 'health-foodtrucks':
+			
+				$('div#health-restroom').addClass('hidden');
+				$('div#health-foodsales').addClass('hidden');
+				$('div#health-foodtrucks').removeClass('hidden');
+				$('div#health-none').addClass('hidden');
+				$('#finished-success').removeClass('hidden');
+				break;
+			
+			case 'health-foodsales':
+			
+				$('div#health-restroom').addClass('hidden');
+				$('div#health-foodsales').removeClass('hidden');
+				$('div#health-foodtrucks').addClass('hidden');
+				$('div#health-none').addClass('hidden');
+				$('#finished-success').removeClass('hidden');
+				break;
+				
+			case 'health-none':
+			
+				$('div#health-restroom').addClass('hidden');
+				$('div#health-foodsales').addClass('hidden');
+				$('div#health-foodtrucks').addClass('hidden');
+				$('div#health-none').removeClass('hidden');
+				$('#finished-success').removeClass('hidden');
+				break;
+				
+				
+			
 		}
-			
-	})
-	
-	$('#public-yes.button').click(function(e) {
-		
-		console.log('public!');
-		$('#public-with-structures #public-yes').removeClass('hidden');
-		$('#300-plus').removeClass('hidden');
-		$('#temporary-structure-definition').addClass('hidden');
-		//$('.button#public-no').addClass('hidden');
-		
-	})
-	
-	$('.button#public-no').click(function(e) {
-		
-		//$('#public-no').removeClass('hidden');
-		//$('.button#public-yes').addClass('hidden');
-		$('div#tent-yes').addClass('hidden');
-		
-		$('#finished-no-structure').removeClass('hidden');
-		$('#300-plus').addClass('hidden');	
-		$('#temporary-structure-definition').addClass('hidden');
-		
-		//this ends the wizard. indicate that. 
-		
-	})
-	
-	$('.button#public-whatIs').click(function(e) {
-		
-		console.log("what is a temporary structure?");
-		$('#temporary-structure-definition').removeClass('hidden');
-		
-	})
-	
-	$('.button#tent-yes').click(function(e) {
-		
-		$('div#tent-yes').removeClass('hidden');
-		$('#certificate-of-use').removeClass('hidden');
-	})
-	
-	$('.button#tent-no').click(function(e) {
-		
-		$('div#tent-yes').addClass('hidden');
-		$('div#tent-no').removeClass('hidden');
-		$('#certificate-of-use').removeClass('hidden');
-		
-	})
-	
-	$('#certificate-of-use .button').click(function(e) {
-		
-		$('#street-closure').removeClass("hidden");
-		
-	})
-	
-	$('.button#cu-no').click(function(e) {
-		
-		$('div#cu-no').removeClass('hidden');
-		$('div#cu-yes').addClass('hidden');
-	})
-	
-	$('.button#cu-yes').click(function(e) {
-		
-		$('div#cu-yes').removeClass('hidden');
-		$('div#cu-no').addClass('hidden');
-	})
-	
-	$('#street-closure .button').click(function(e) {
-		
-		$('#special-types').removeClass('hidden');
-	})
-	
-	$('.button#street-yes').click(function(e) {
-		
-		$('div#street-yes').removeClass('hidden');
-		$('div#street-no').addClass('hidden');
-		$('div#street-yesAgain').addClass('hidden');
-	})
-	
-	$('.button#street-yesAgain').click(function(e) {
-		
-		$('div#street-yesAgain').removeClass('hidden');
-		$('div#street-no').addClass('hidden');
-		$('div#street-yes').addClass('hidden');
-	})
-	
-	$('.button#street-no').click(function(e) {
-		
-		$('div#street-yes').addClass("hidden");
-		$('div#street-yesAgain').addClass('hidden');
-		$('div#street-no').removeClass('hidden');
-		
-	})
-	
-	$('#special-types .button').click(function(e) {
-		
-		$('#health').removeClass('hidden');
-	})
-	
-	$("#type-sale").click(function(e) {
-		
-		$('div#type-sale').removeClass('hidden');
-		$('div#type-carnival').addClass('hidden');
-		$('div#type-assembly').addClass('hidden');
-	})
-	
-	$("#type-carnival").click(function(e) {
-		
-		$('div#type-sale').addClass('hidden');
-		$('div#type-carnival').removeClass('hidden');
-		$('div#type-assembly').addClass('hidden');
-	})
-	
-	$("#type-assembly").click(function(e) {
-		
-		$('div#type-sale').addClass('hidden');
-		$('div#type-carnival').addClass('hidden');
-		$('div#type-assembly').removeClass('hidden');
-	})
-	
-	$('#health .button').click(function(e) {
-		
-		
-		$('#finished-success').removeClass('hidden');
-	})
-	
-	$('#health-restroom').click(function(e) {
-		
-		$('div#health-restroom').removeClass('hidden');
-		$('div#health-foodsales').addClass('hidden');
-		$('div#health-foodtrucks').addClass('hidden');
-		$('div#health-none').addClass('hidden');
-		
-	})
-	
-	$('#health-tanks').click(function(e) {
-		
-		$('div#health-restroom').removeClass('hidden');
-		$('div#health-foodsales').addClass('hidden');
-		$('div#health-foodtrucks').addClass('hidden');
-		$('div#health-none').addClass('hidden');
-		
-	})
-	
-	$('#health-foodtrucks').click(function(e) {
-		
-		$('div#health-restroom').addClass('hidden');
-		$('div#health-foodsales').addClass('hidden');
-		$('div#health-foodtrucks').removeClass('hidden');
-		$('div#health-none').addClass('hidden');
-		
-	})
-	
-	$('#health-foodsales').click(function(e) {
-		
-		$('div#health-restroom').addClass('hidden');
-		$('div#health-foodsales').removeClass('hidden');
-		$('div#health-foodtrucks').addClass('hidden');
-		$('div#health-none').addClass('hidden');
-		
-	})
-	
-	$('#health-none').click(function(e) {
-		
-		$('div#health-restroom').addClass('hidden');
-		$('div#health-foodsales').addClass('hidden');
-		$('div#health-foodtrucks').addClass('hidden');
-		$('div#health-none').removeClass('hidden');
-		
-	})
-	
+	}
 	
 	//end repetitive buttons
 	
@@ -370,11 +352,6 @@ $(document).ready(function() {
 			console.log('hiding finished');
 			$(this).addClass('hidden');
 		})
-	}
-	
-	function changed() {
-		
-		console.log("something was unhidden!");
 	}
 	
 	

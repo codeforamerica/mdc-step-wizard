@@ -11,6 +11,11 @@
 }
 /* END TYPOGRAPHY */
 
+body {
+	
+	
+}
+
 header {
 	
 	width:100%;
@@ -33,7 +38,6 @@ footer {
 	
 	width:100%;
 	background-color:#d1d1d1;
-	color:white;
 	padding-top:20px;
 	padding-bottom:20px;
 }
@@ -42,6 +46,7 @@ footer p {
 	
 	padding:0;
 	margin:0;
+	line-height: normal;
 }
 
 .hidden {
@@ -52,6 +57,7 @@ footer p {
 #container {
 	
 	width:80%;
+	min-height:800px;
 	padding:10px;
 	margin:0 auto;
 	
