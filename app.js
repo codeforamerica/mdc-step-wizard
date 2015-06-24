@@ -115,6 +115,7 @@ $(document).ready(function() {
 		console.log('public!');
 		$('#public-with-structures #public-yes').removeClass('hidden');
 		$('#300-plus').removeClass('hidden');
+		$('#temporary-structure-definition').addClass('hidden');
 		//$('.button#public-no').addClass('hidden');
 		
 	})
@@ -127,6 +128,7 @@ $(document).ready(function() {
 		
 		$('#finished-no-structure').removeClass('hidden');
 		$('#300-plus').addClass('hidden');	
+		$('#temporary-structure-definition').addClass('hidden');
 		
 		//this ends the wizard. indicate that. 
 		
@@ -141,6 +143,7 @@ $(document).ready(function() {
 	
 	$('.button#tent-yes').click(function(e) {
 		
+		$('div#tent-yes').removeClass('hidden');
 		$('#certificate-of-use').removeClass('hidden');
 	})
 	
@@ -148,6 +151,7 @@ $(document).ready(function() {
 		
 		$('div#tent-yes').addClass('hidden');
 		$('div#tent-no').removeClass('hidden');
+		$('#certificate-of-use').removeClass('hidden');
 		
 	})
 	
@@ -157,6 +161,18 @@ $(document).ready(function() {
 		
 	})
 	
+	$('.button#cu-no').click(function(e) {
+		
+		$('div#cu-no').removeClass('hidden');
+		$('div#cu-yes').addClass('hidden');
+	})
+	
+	$('.button#cu-yes').click(function(e) {
+		
+		$('div#cu-yes').removeClass('hidden');
+		$('div#cu-no').addClass('hidden');
+	})
+	
 	$('#street-closure .button').click(function(e) {
 		
 		$('#special-types').removeClass('hidden');
@@ -164,17 +180,22 @@ $(document).ready(function() {
 	
 	$('.button#street-yes').click(function(e) {
 		
-		$('#street-yes').removeClass('hidden');
+		$('div#street-yes').removeClass('hidden');
+		$('div#street-no').addClass('hidden');
+		$('div#street-yesAgain').addClass('hidden');
 	})
 	
 	$('.button#street-yesAgain').click(function(e) {
 		
-		$('#street-yesAgain').removeClass('hidden');
+		$('div#street-yesAgain').removeClass('hidden');
+		$('div#street-no').addClass('hidden');
+		$('div#street-yes').addClass('hidden');
 	})
 	
 	$('.button#street-no').click(function(e) {
 		
 		$('div#street-yes').addClass("hidden");
+		$('div#street-yesAgain').addClass('hidden');
 		$('div#street-no').removeClass('hidden');
 		
 	})
@@ -184,13 +205,77 @@ $(document).ready(function() {
 		$('#health').removeClass('hidden');
 	})
 	
+	$("#type-sale").click(function(e) {
+		
+		$('div#type-sale').removeClass('hidden');
+		$('div#type-carnival').addClass('hidden');
+		$('div#type-assembly').addClass('hidden');
+	})
+	
+	$("#type-carnival").click(function(e) {
+		
+		$('div#type-sale').addClass('hidden');
+		$('div#type-carnival').removeClass('hidden');
+		$('div#type-assembly').addClass('hidden');
+	})
+	
+	$("#type-assembly").click(function(e) {
+		
+		$('div#type-sale').addClass('hidden');
+		$('div#type-carnival').addClass('hidden');
+		$('div#type-assembly').removeClass('hidden');
+	})
+	
 	$('#health .button').click(function(e) {
 		
 		
 		$('#finished-success').removeClass('hidden');
 	})
 	
+	$('#health-restroom').click(function(e) {
+		
+		$('div#health-restroom').removeClass('hidden');
+		$('div#health-foodsales').addClass('hidden');
+		$('div#health-foodtrucks').addClass('hidden');
+		$('div#health-none').addClass('hidden');
+		
+	})
 	
+	$('#health-tanks').click(function(e) {
+		
+		$('div#health-restroom').removeClass('hidden');
+		$('div#health-foodsales').addClass('hidden');
+		$('div#health-foodtrucks').addClass('hidden');
+		$('div#health-none').addClass('hidden');
+		
+	})
+	
+	$('#health-foodtrucks').click(function(e) {
+		
+		$('div#health-restroom').addClass('hidden');
+		$('div#health-foodsales').addClass('hidden');
+		$('div#health-foodtrucks').removeClass('hidden');
+		$('div#health-none').addClass('hidden');
+		
+	})
+	
+	$('#health-foodsales').click(function(e) {
+		
+		$('div#health-restroom').addClass('hidden');
+		$('div#health-foodsales').removeClass('hidden');
+		$('div#health-foodtrucks').addClass('hidden');
+		$('div#health-none').addClass('hidden');
+		
+	})
+	
+	$('#health-none').click(function(e) {
+		
+		$('div#health-restroom').addClass('hidden');
+		$('div#health-foodsales').addClass('hidden');
+		$('div#health-foodtrucks').addClass('hidden');
+		$('div#health-none').removeClass('hidden');
+		
+	})
 	
 	function codeAddress(address) {
 		
