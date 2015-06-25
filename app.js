@@ -35,63 +35,74 @@ $(document).ready(function() {
 		})
 	}
 	
+	function showHide(showThese, hideThose) {
+		
+		for(var i = 0; i < showThese.length; i++) {
+			
+			$(showThese[i]).removeClass('hidden');
+		}
+		
+		for(var i = 0; i < hideThose.length; i++) {
+			
+			$(hideThose[i]).addClass('hidden');
+		}
+	}
+	
 	function showModules(buttonID) {
 		
 		console.log('show module: ', buttonID);
 		switch(buttonID) {
 			
 			case 'address-yes':
-				$('form#address').removeClass('hidden');
-				$('#no-address').addClass('hidden');
-				$('#umsa').addClass('hidden');
+				
+				showHide(['form#address'], ['#no-address', '#umsa']);
 				break;
 				
 			case 'address-no':
-				$('#umsa').removeClass('hidden');
-				$('#no-address').removeClass('hidden');
+			
+				showHide(['#umsa', '#no-address'], ['form#address']);
 				$('#no-address .response').text("You don't have an address for your event yet.");
-				$('form#address').addClass('hidden');
 				break;
 				
 			case 'umsa-yes':
 				
-				$('#county-parks').removeClass('hidden');
+				showHide(['#county-parks'], [])
 				break;
 				
 			case 'umsa-no':
 			
 				showFinished();
-				$('#finished-do-not-apply').removeClass('hidden');
+				showHide(['#finished-do-not-apply'], [])
 				console.log("END THE WIZARD");
 				break;
 			
 			case 'umsa-notSure':
 			
-				$('#finished-not-sure').removeClass('hidden');
+				showHide(['#finished-not-sure'], [])
+				//$('#finished-not-sure').removeClass('hidden');
 				console.log("END THE WIZARD");
 				break;
 			
 			case 'park-yes':
 			
-				$('#finished-park').removeClass('hidden');
+				showHide(['#finished-park'], [])
+				//$('#finished-park').removeClass('hidden');
 				console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
 				break;
 				
 			case 'park-no':
 			
-				$("#public-with-structures").removeClass('hidden');
+				showHide(['#public-with-structures'], [])
 				break;
 			
 			case 'submit-address':
 				
-				e.preventDefault();
-		
 				var addy = $('input#input-address').val();
 				
 				//logic check to make sure that there's actually a value
 				if(addy.length > 0) {
 					
-					$("#address-value").removeClass('hidden');
+					showHide(['#address-value'], []);
 					$("#address-value .value").text(addy);
 					codeAddress(addy);
 					
@@ -107,155 +118,96 @@ $(document).ready(function() {
 			
 			case 'public-yes':
 			
-				console.log('public!');
-				$('#public-with-structures #public-yes').removeClass('hidden');
-				$('#300-plus').removeClass('hidden');
-				$('#temporary-structure-definition').addClass('hidden');
-				//$('.button#public-no').addClass('hidden');
+				showHide(['#public-with-structures #public-yes', '#300-plus'],['#temporary-structure-definition']);
 				break;
 			
 			case 'public-no':
 			
-				//$('#public-no').removeClass('hidden');
-				//$('.button#public-yes').addClass('hidden');
-				$('div#tent-yes').addClass('hidden');
-		
-				$('#finished-no-structure').removeClass('hidden');
-				$('#300-plus').addClass('hidden');	
-				$('#temporary-structure-definition').addClass('hidden');
-		
-				//this ends the wizard. indicate that. 
+				showHide(['#finished-no-structure'],['div#tent-yes', '#300-plus', '#temporary-structure-definition']);
 				break;
 			
 			case 'public-whatIs':
 			
 				console.log("what is a temporary structure?");
-				$('#temporary-structure-definition').removeClass('hidden');
+				showHide(['#temporary-structure-definition'],[]);
 				break;
 			
 			case 'tent-yes':
 			
-				$('div#tent-yes').removeClass('hidden');
-				$('#certificate-of-use').removeClass('hidden');
+				showHide(['div#tent-yes', '#certificate-of-use'],[]);
 				break;
 			
 			case 'tent-no':
 			
-				$('div#tent-yes').addClass('hidden');
-				$('div#tent-no').removeClass('hidden');
-				$('#certificate-of-use').removeClass('hidden');
+				showHide(['div#tent-no', '#certificate-of-use'],['div#tent-yes']);
 				break;
 			
 			case 'cu-no':
 			
-				$('div#cu-no').removeClass('hidden');
-				$('div#cu-yes').addClass('hidden');
-				$('#street-closure').removeClass('hidden');
+				showHide(['div#cu-no', '#street-closure'],['div#cu-yes']);
 				break;
 			
 			case 'cu-yes':
 			
-				$('div#cu-yes').removeClass('hidden');
-				$('div#cu-no').addClass('hidden');
-				$('#street-closure').removeClass('hidden');
+				showHide(['div#cu-yes', '#street-closure'],['div#cu-no']);
 				break;
 			
 			case 'street-yes':
 			
-				$('#special-types').removeClass('hidden');
-				$('div#street-yes').removeClass('hidden');
-				$('div#street-no').addClass('hidden');
-				$('div#street-yesAgain').addClass('hidden');
+				showHide(['#special-types', 'div#street-yes'],['div#street-no','div#street-yesAgain']);
 				break;
 			
 			case 'street-yesAgain':
 			
-				$('#special-types').removeClass('hidden');
-				$('div#street-yesAgain').removeClass('hidden');
-				$('div#street-no').addClass('hidden');
-				$('div#street-yes').addClass('hidden');
+				showHide(['#special-types', 'div#street-yesAgain'],['div#street-no', 'div#street-yes']);
 				break;
 			
 			case 'street-no':
 				
-				$('#special-types').removeClass('hidden');
-				$('div#street-yes').addClass("hidden");
-				$('div#street-yesAgain').addClass('hidden');
-				$('div#street-no').removeClass('hidden');
+				showHide(['#special-types','div#street-no'],['div#street-yes', 'div#street-yesAgain']);
 				break;
 			
 			case 'type-sale':
 			
-				$('#health').removeClass('hidden');
-				$('div#type-sale').removeClass('hidden');
-				$('div#type-carnival').addClass('hidden');
-				$('div#type-assembly').addClass('hidden');
+				showHide(['#health', 'div#type-sale'],['div#type-carnival','div#type-assembly']);
 				break;
 				
 				
 			case 'type-carnival':
 			
-				$('#health').removeClass('hidden');
-				$('div#type-sale').addClass('hidden');
-				$('div#type-carnival').removeClass('hidden');
-				$('div#type-assembly').addClass('hidden');
+				showHide(['#health', 'div#type-carnival'],['div#type-sale', 'div#type-assembly']);
 				break;
 				
 				
 			case 'type-assembly':
 			
-				$('#health').removeClass('hidden');
-				$('div#type-sale').addClass('hidden');
-				$('div#type-carnival').addClass('hidden');
-				$('div#type-assembly').removeClass('hidden');
+				showHide(['#health', 'div#type-assembly'],['div#type-sale','div#type-carnival']);
 				break;
 				
 			case 'health-restroom':
 			
-				$('div#health-restroom').removeClass('hidden');
-				$('div#health-foodsales').addClass('hidden');
-				$('div#health-foodtrucks').addClass('hidden');
-				$('div#health-none').addClass('hidden');
-				$('#finished-success').removeClass('hidden');
+				showHide(['div#health-restroom','#finished-success'],['div#health-foodsales','div#health-foodtrucks','div#health-none']);
 				break;
 				
 			case 'health-tanks':
 			
-				$('div#health-restroom').removeClass('hidden');
-				$('div#health-foodsales').addClass('hidden');
-				$('div#health-foodtrucks').addClass('hidden');
-				$('div#health-none').addClass('hidden');
-				$('#finished-success').removeClass('hidden');
+				showHide(['div#health-restroom','#finished-success'],['div#health-foodsales','div#health-foodtrucks','div#health-none']);
 				break;
 				
 			case 'health-foodtrucks':
 			
-				$('div#health-restroom').addClass('hidden');
-				$('div#health-foodsales').addClass('hidden');
-				$('div#health-foodtrucks').removeClass('hidden');
-				$('div#health-none').addClass('hidden');
-				$('#finished-success').removeClass('hidden');
+				showHide(['div#health-foodtrucks','#finished-success'],['div#health-restroom','div#health-foodsales','div#health-none']);
 				break;
 			
 			case 'health-foodsales':
 			
-				$('div#health-restroom').addClass('hidden');
-				$('div#health-foodsales').removeClass('hidden');
-				$('div#health-foodtrucks').addClass('hidden');
-				$('div#health-none').addClass('hidden');
-				$('#finished-success').removeClass('hidden');
+				showHide(['div#health-foodsales','#finished-success'],['div#health-restroom','div#health-foodtrucks','div#health-none']);
 				break;
 				
 			case 'health-none':
 			
-				$('div#health-restroom').addClass('hidden');
-				$('div#health-foodsales').addClass('hidden');
-				$('div#health-foodtrucks').addClass('hidden');
-				$('div#health-none').removeClass('hidden');
-				$('#finished-success').removeClass('hidden');
+				showHide(['div#health-none','#finished-success'],['div#health-restroom','div#health-foodsales','div#health-foodtrucks']);
 				break;
-				
-				
 			
 		}
 	}
