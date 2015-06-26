@@ -71,7 +71,7 @@ $(document).ready(function() {
 				
 			case 'umsa-no':
 			
-				showFinished();
+				//showFinished();
 				showHide(['#finished-do-not-apply'], [])
 				console.log("END THE WIZARD");
 				break;
@@ -85,7 +85,7 @@ $(document).ready(function() {
 			
 			case 'park-yes':
 			
-				showHide(['#finished-park'], [])
+				showHide(['#finished-park'], ['#finished-success', '#finished-do-not-apply', '#finished-success', '#finished-not-sure', '#finished-no-structure'])
 				//$('#finished-park').removeClass('hidden');
 				console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
 				break;
@@ -134,7 +134,7 @@ $(document).ready(function() {
 			
 			case 'tent-yes':
 			
-				showHide(['div#tent-yes', '#certificate-of-use'],[]);
+				showHide(['div#tent-yes', '#certificate-of-use'],['div#tent-no']);
 				break;
 			
 			case 'tent-no':
@@ -293,8 +293,9 @@ $(document).ready(function() {
 			txt += '<br>This address is located in unincorporated Miami-Dade County.';
 		}
 		
-		$('#county-parks').removeClass('hidden');
-		$('#address-value .value').text(txt);
+		//$('#county-parks').removeClass('hidden');
+		showModules('umsa-no');
+		$('#address-value .value').html(txt);
 	}
 	
 	function showFinished() {
