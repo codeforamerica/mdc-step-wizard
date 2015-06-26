@@ -22,7 +22,8 @@ $(document).ready(function() {
 		
 		e.preventDefault();
 		buttonReset();
-		$(this).addClass('active');	
+		$(this).addClass('active');
+		showModules($(this).attr('id'));	
 	})
 	
 	//still broken
@@ -34,249 +35,182 @@ $(document).ready(function() {
 		})
 	}
 	
-	//geocoding -- UMSA or not? buttons
-	$('#address-yes').click(function(e){
+	function showHide(showThese, hideThose) {
 		
-		e.preventDefault();
-		$('form#address').removeClass('hidden');
-		$('#no-address').addClass('hidden');
-		$('#umsa').addClass('hidden');
-		
-	})
-	
-	$('#address-no').click(function(e) {
-		
-		e.preventDefault();
-		$('#umsa').removeClass('hidden');
-		$('#no-address').removeClass('hidden');
-		$('#no-address .response').text("You don't have an address for your event yet.");
-		$('form#address').addClass('hidden');
-	})
-	
-	$('#umsa-yes').click(function(e) {
-		
-		e.preventDefault();
-		$('#county-parks').removeClass('hidden');
-	})
-	
-	$('#umsa-no').click(function(e) {
-		
-		e.preventDefault();
-		showFinished();
-		$('#finished-do-not-apply').removeClass('hidden');
-		console.log("END THE WIZARD");
-	})
-	
-	$('#umsa-notSure').click(function(e) {
-		
-		e.preventDefault();
-		$('#finished-not-sure').removeClass('hidden');
-		console.log("END THE WIZARD");
-	})
-	
-	$('#park-yes').click(function(e) {
-		
-		e.preventDefault();
-		$('#finished-park').removeClass('hidden');
-		console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
-	})
-	
-	$('#park-no').click(function(e) {
-		
-		e.preventDefault();
-		$("#public-with-structures").removeClass('hidden');
-	})
-	
-	$('#submit-address').click(function(e) {
-		
-		e.preventDefault();
-		
-		var addy = $('input#input-address').val();
-		
-		//logic check to make sure that there's actually a value
-		if(addy.length > 0) {
+		for(var i = 0; i < showThese.length; i++) {
 			
-			$("#address-value").removeClass('hidden');
-			$("#address-value .value").text(addy);
-			codeAddress(addy);
-			
-			console.log('addy: ', $.type(addy), addy.length);
-			
-		} else {
-			
-			//what if there's no value? Error message.
-			console.log("ERROR: no address entered");
+			$(showThese[i]).removeClass('hidden');
 		}
+		
+		for(var i = 0; i < hideThose.length; i++) {
 			
-	})
+			$(hideThose[i]).addClass('hidden');
+		}
+	}
 	
-	$('#public-yes.button').click(function(e) {
+	function showModules(buttonID) {
 		
-		console.log('public!');
-		$('#public-with-structures #public-yes').removeClass('hidden');
-		$('#300-plus').removeClass('hidden');
-		$('#temporary-structure-definition').addClass('hidden');
-		//$('.button#public-no').addClass('hidden');
-		
-	})
-	
-	$('.button#public-no').click(function(e) {
-		
-		//$('#public-no').removeClass('hidden');
-		//$('.button#public-yes').addClass('hidden');
-		$('div#tent-yes').addClass('hidden');
-		
-		$('#finished-no-structure').removeClass('hidden');
-		$('#300-plus').addClass('hidden');	
-		$('#temporary-structure-definition').addClass('hidden');
-		
-		//this ends the wizard. indicate that. 
-		
-	})
-	
-	$('.button#public-whatIs').click(function(e) {
-		
-		console.log("what is a temporary structure?");
-		$('#temporary-structure-definition').removeClass('hidden');
-		
-	})
-	
-	$('.button#tent-yes').click(function(e) {
-		
-		$('div#tent-yes').removeClass('hidden');
-		$('#certificate-of-use').removeClass('hidden');
-	})
-	
-	$('.button#tent-no').click(function(e) {
-		
-		$('div#tent-yes').addClass('hidden');
-		$('div#tent-no').removeClass('hidden');
-		$('#certificate-of-use').removeClass('hidden');
-		
-	})
-	
-	$('#certificate-of-use .button').click(function(e) {
-		
-		$('#street-closure').removeClass("hidden");
-		
-	})
-	
-	$('.button#cu-no').click(function(e) {
-		
-		$('div#cu-no').removeClass('hidden');
-		$('div#cu-yes').addClass('hidden');
-	})
-	
-	$('.button#cu-yes').click(function(e) {
-		
-		$('div#cu-yes').removeClass('hidden');
-		$('div#cu-no').addClass('hidden');
-	})
-	
-	$('#street-closure .button').click(function(e) {
-		
-		$('#special-types').removeClass('hidden');
-	})
-	
-	$('.button#street-yes').click(function(e) {
-		
-		$('div#street-yes').removeClass('hidden');
-		$('div#street-no').addClass('hidden');
-		$('div#street-yesAgain').addClass('hidden');
-	})
-	
-	$('.button#street-yesAgain').click(function(e) {
-		
-		$('div#street-yesAgain').removeClass('hidden');
-		$('div#street-no').addClass('hidden');
-		$('div#street-yes').addClass('hidden');
-	})
-	
-	$('.button#street-no').click(function(e) {
-		
-		$('div#street-yes').addClass("hidden");
-		$('div#street-yesAgain').addClass('hidden');
-		$('div#street-no').removeClass('hidden');
-		
-	})
-	
-	$('#special-types .button').click(function(e) {
-		
-		$('#health').removeClass('hidden');
-	})
-	
-	$("#type-sale").click(function(e) {
-		
-		$('div#type-sale').removeClass('hidden');
-		$('div#type-carnival').addClass('hidden');
-		$('div#type-assembly').addClass('hidden');
-	})
-	
-	$("#type-carnival").click(function(e) {
-		
-		$('div#type-sale').addClass('hidden');
-		$('div#type-carnival').removeClass('hidden');
-		$('div#type-assembly').addClass('hidden');
-	})
-	
-	$("#type-assembly").click(function(e) {
-		
-		$('div#type-sale').addClass('hidden');
-		$('div#type-carnival').addClass('hidden');
-		$('div#type-assembly').removeClass('hidden');
-	})
-	
-	$('#health .button').click(function(e) {
-		
-		
-		$('#finished-success').removeClass('hidden');
-	})
-	
-	$('#health-restroom').click(function(e) {
-		
-		$('div#health-restroom').removeClass('hidden');
-		$('div#health-foodsales').addClass('hidden');
-		$('div#health-foodtrucks').addClass('hidden');
-		$('div#health-none').addClass('hidden');
-		
-	})
-	
-	$('#health-tanks').click(function(e) {
-		
-		$('div#health-restroom').removeClass('hidden');
-		$('div#health-foodsales').addClass('hidden');
-		$('div#health-foodtrucks').addClass('hidden');
-		$('div#health-none').addClass('hidden');
-		
-	})
-	
-	$('#health-foodtrucks').click(function(e) {
-		
-		$('div#health-restroom').addClass('hidden');
-		$('div#health-foodsales').addClass('hidden');
-		$('div#health-foodtrucks').removeClass('hidden');
-		$('div#health-none').addClass('hidden');
-		
-	})
-	
-	$('#health-foodsales').click(function(e) {
-		
-		$('div#health-restroom').addClass('hidden');
-		$('div#health-foodsales').removeClass('hidden');
-		$('div#health-foodtrucks').addClass('hidden');
-		$('div#health-none').addClass('hidden');
-		
-	})
-	
-	$('#health-none').click(function(e) {
-		
-		$('div#health-restroom').addClass('hidden');
-		$('div#health-foodsales').addClass('hidden');
-		$('div#health-foodtrucks').addClass('hidden');
-		$('div#health-none').removeClass('hidden');
-		
-	})
-	
+		console.log('show module: ', buttonID);
+		switch(buttonID) {
+			
+			case 'address-yes':
+				
+				showHide(['form#address'], ['#no-address', '#umsa']);
+				break;
+				
+			case 'address-no':
+			
+				showHide(['#umsa', '#no-address'], ['form#address']);
+				$('#no-address .response').text("You don't have an address for your event yet.");
+				break;
+				
+			case 'umsa-yes':
+				
+				showHide(['#county-parks'], [])
+				break;
+				
+			case 'umsa-no':
+			
+				//showFinished();
+				showHide(['#finished-do-not-apply'], [])
+				console.log("END THE WIZARD");
+				break;
+			
+			case 'umsa-notSure':
+			
+				showHide(['#finished-not-sure'], [])
+				//$('#finished-not-sure').removeClass('hidden');
+				console.log("END THE WIZARD");
+				break;
+			
+			case 'park-yes':
+			
+				showHide(['#finished-park'], ['#finished-success', '#finished-do-not-apply', '#finished-success', '#finished-not-sure', '#finished-no-structure'])
+				//$('#finished-park').removeClass('hidden');
+				console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
+				break;
+				
+			case 'park-no':
+			
+				showHide(['#public-with-structures'], [])
+				break;
+			
+			case 'submit-address':
+				
+				var addy = $('input#input-address').val();
+				
+				//logic check to make sure that there's actually a value
+				if(addy.length > 0) {
+					
+					showHide(['#address-value'], []);
+					$("#address-value .value").text(addy);
+					codeAddress(addy);
+					
+					console.log('addy: ', $.type(addy), addy.length);
+					
+				} else {
+					
+					//what if there's no value? Error message.
+					console.log("ERROR: no address entered");
+				}
+
+				break;
+			
+			case 'public-yes':
+			
+				showHide(['#public-with-structures #public-yes', '#300-plus'],['#temporary-structure-definition']);
+				break;
+			
+			case 'public-no':
+			
+				showHide(['#finished-no-structure'],['div#tent-yes', '#300-plus', '#temporary-structure-definition']);
+				break;
+			
+			case 'public-whatIs':
+			
+				console.log("what is a temporary structure?");
+				showHide(['#temporary-structure-definition'],[]);
+				break;
+			
+			case 'tent-yes':
+			
+				showHide(['div#tent-yes', '#certificate-of-use'],['div#tent-no']);
+				break;
+			
+			case 'tent-no':
+			
+				showHide(['div#tent-no', '#certificate-of-use'],['div#tent-yes']);
+				break;
+			
+			case 'cu-no':
+			
+				showHide(['div#cu-no', '#street-closure'],['div#cu-yes']);
+				break;
+			
+			case 'cu-yes':
+			
+				showHide(['div#cu-yes', '#street-closure'],['div#cu-no']);
+				break;
+			
+			case 'street-yes':
+			
+				showHide(['#special-types', 'div#street-yes'],['div#street-no','div#street-yesAgain']);
+				break;
+			
+			case 'street-yesAgain':
+			
+				showHide(['#special-types', 'div#street-yesAgain'],['div#street-no', 'div#street-yes']);
+				break;
+			
+			case 'street-no':
+				
+				showHide(['#special-types','div#street-no'],['div#street-yes', 'div#street-yesAgain']);
+				break;
+			
+			case 'type-sale':
+			
+				showHide(['#health', 'div#type-sale'],['div#type-carnival','div#type-assembly']);
+				break;
+				
+				
+			case 'type-carnival':
+			
+				showHide(['#health', 'div#type-carnival'],['div#type-sale', 'div#type-assembly']);
+				break;
+				
+				
+			case 'type-assembly':
+			
+				showHide(['#health', 'div#type-assembly'],['div#type-sale','div#type-carnival']);
+				break;
+				
+			case 'health-restroom':
+			
+				showHide(['div#health-restroom','#finished-success'],['div#health-foodsales','div#health-foodtrucks','div#health-none']);
+				break;
+				
+			case 'health-tanks':
+			
+				showHide(['div#health-restroom','#finished-success'],['div#health-foodsales','div#health-foodtrucks','div#health-none']);
+				break;
+				
+			case 'health-foodtrucks':
+			
+				showHide(['div#health-foodtrucks','#finished-success'],['div#health-restroom','div#health-foodsales','div#health-none']);
+				break;
+			
+			case 'health-foodsales':
+			
+				showHide(['div#health-foodsales','#finished-success'],['div#health-restroom','div#health-foodtrucks','div#health-none']);
+				break;
+				
+			case 'health-none':
+			
+				showHide(['div#health-none','#finished-success'],['div#health-restroom','div#health-foodsales','div#health-foodtrucks']);
+				break;
+			
+		}
+	}
 	
 	//end repetitive buttons
 	
@@ -359,8 +293,9 @@ $(document).ready(function() {
 			txt += '<br>This address is located in unincorporated Miami-Dade County.';
 		}
 		
-		$('#county-parks').removeClass('hidden');
-		$('#address-value .value').text(txt);
+		//$('#county-parks').removeClass('hidden');
+		showModules('umsa-no');
+		$('#address-value .value').html(txt);
 	}
 	
 	function showFinished() {
@@ -370,11 +305,6 @@ $(document).ready(function() {
 			console.log('hiding finished');
 			$(this).addClass('hidden');
 		})
-	}
-	
-	function changed() {
-		
-		console.log("something was unhidden!");
 	}
 	
 	
