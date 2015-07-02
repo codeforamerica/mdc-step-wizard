@@ -26,6 +26,12 @@ $(document).ready(function() {
 		showModules($(this).attr('id'));	
 	})
 	
+	$("#input-address").keyup(function(event){
+	    if(event.keyCode == 13){
+	        $("#submit-address").click();
+	    }
+	});
+
 	//still broken
 	function buttonReset() {
 		
@@ -297,7 +303,6 @@ $(document).ready(function() {
 			console.log('you are in umsa. continue.');
 			//need a check for county park here.
 			
-			//$('#public-with-structures').removeClass('hidden');
 			txt += '<br>This address is located in unincorporated Miami-Dade County.';
 			showModules('umsa-yes');
 		}
