@@ -21,7 +21,7 @@ $(document).ready(function() {
 	$('.button').click(function(e) {
 		
 		e.preventDefault();
-		buttonReset();
+		//buttonReset();
 		$(this).addClass('active');
 		showModules($(this).attr('id'));	
 	})
@@ -59,6 +59,26 @@ $(document).ready(function() {
 		console.log('show module: ', buttonID);
 		switch(buttonID) {
 			
+			case 'public-yes':
+			
+				showHide(['#address'], []);
+				break;
+				
+			case 'public-no':
+			
+				showHide(['#ticket-sales'], []);
+				break;
+			
+			case 'tickets-yes':
+			
+				showHide(['#address'], []);
+				break;
+				
+			case 'tickets-no':
+				
+				showHide(['#finished-not-public'], []);
+				break;
+				
 			case 'address-yes':
 				
 				showHide(['form#address'], ['#no-address', '#umsa']);
