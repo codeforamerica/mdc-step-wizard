@@ -6,8 +6,6 @@ $(document).ready(function() {
 	var geocoder;
 	var municipality; 
 	
-	//var map;
-	
 	function initialize() {
 	
 	   geocoder = new google.maps.Geocoder();
@@ -21,18 +19,45 @@ $(document).ready(function() {
 	$('.button').click(function(e) {
 		
 		e.preventDefault();
-		buttonReset();
-		$(this).addClass('active');
 		showModules($(this).attr('id'));	
+		buttonReset($(this).attr('id'));
+		$(this).addClass('active');
+		
 	})
 	
-	//still broken
-	function buttonReset() {
+	$("#input-address").keyup(function(event){
+	    if(event.keyCode == 13){
+	        $("#submit-address").click();
+	    }
+	});
+
+	//reset button visual states as needed
+	function buttonReset(id) {
 		
 		$('.button').each(function() {
 			
-			$(this).removeClass('active');
+			//console.log($(this).attr('id').split('-')[0]);
+			if($(this).attr('id').split('-')[0] == id.split('-')[0]) {
+				
+				$(this).removeClass('active');
+			}
 		})
+	}
+	
+	function reset(nodes) {
+		
+		for(var i = 0; i < nodes.length; i++) {
+			
+			$(nodes[i]).addClass('hidden');
+			$(nodes[i] + ' .button').removeClass('active');
+		}
+		
+		
+	}
+	
+	function resetFinishers() {
+		
+		$('.finished').addClass('hidden');	
 	}
 	
 	function showHide(showThese, hideThose) {
@@ -51,40 +76,72 @@ $(document).ready(function() {
 	function showModules(buttonID) {
 		
 		console.log('show module: ', buttonID);
+		
+		resetFinishers();
+		
 		switch(buttonID) {
 			
+			case 'public-yes':
+			
+				reset(['#ticket-sales', '#address', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
+				showHide(['#address'], []);
+
+				break;
+				
+			case 'public-no':
+			
+				reset(['#ticket-sales', '#address', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
+				showHide(['#ticket-sales'], []);
+				break;
+			
+			case 'tickets-yes':
+			
+				reset(['#address', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
+				showHide(['#address'], []);
+				break;
+				
+			case 'tickets-no':
+				
+				reset(['#address', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
+				showHide(['#finished-not-public'], []);
+				break;
+				
 			case 'address-yes':
 				
+				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['form#address'], ['#no-address', '#umsa']);
 				break;
 				
 			case 'address-no':
 			
+				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#umsa', '#no-address'], ['form#address']);
 				$('#no-address .response').text("You don't have an address for your event yet.");
 				break;
 				
 			case 'umsa-yes':
 				
+				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#county-parks'], [])
 				break;
 				
 			case 'umsa-no':
 			
-				//showFinished();
+				reset(['#county-parks', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#finished-do-not-apply'], [])
 				console.log("END THE WIZARD");
 				break;
 			
 			case 'umsa-notSure':
 			
+				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#finished-not-sure'], [])
-				//$('#finished-not-sure').removeClass('hidden');
 				console.log("END THE WIZARD");
 				break;
 			
 			case 'park-yes':
 			
+				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#finished-park'], ['#finished-success', '#finished-do-not-apply', '#finished-success', '#finished-not-sure', '#finished-no-structure'])
 				//$('#finished-park').removeClass('hidden');
 				console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
@@ -106,7 +163,7 @@ $(document).ready(function() {
 					$("#address-value .value").text(addy);
 					codeAddress(addy);
 					
-					console.log('addy: ', $.type(addy), addy.length);
+					//console.log('addy: ', $.type(addy), addy.length);
 					
 				} else {
 					
@@ -116,17 +173,17 @@ $(document).ready(function() {
 
 				break;
 			
-			case 'public-yes':
+			case 'structure-yes':
 			
 				showHide(['#public-with-structures #public-yes', '#300-plus'],['#temporary-structure-definition']);
 				break;
 			
-			case 'public-no':
+			case 'structure-no':
 			
 				showHide(['#finished-no-structure'],['div#tent-yes', '#300-plus', '#temporary-structure-definition']);
 				break;
 			
-			case 'public-whatIs':
+			case 'structure-whatIs':
 			
 				console.log("what is a temporary structure?");
 				showHide(['#temporary-structure-definition'],[]);
@@ -182,6 +239,11 @@ $(document).ready(function() {
 			case 'type-assembly':
 			
 				showHide(['#health', 'div#type-assembly'],['div#type-sale','div#type-carnival']);
+				break;
+				
+			case 'type-none':
+			
+				howHide(['#health'],['div#type-assembly', 'div#type-sale','div#type-carnival']);
 				break;
 				
 			case 'health-restroom':
@@ -297,7 +359,6 @@ $(document).ready(function() {
 			console.log('you are in umsa. continue.');
 			//need a check for county park here.
 			
-			//$('#public-with-structures').removeClass('hidden');
 			txt += '<br>This address is located in unincorporated Miami-Dade County.';
 			showModules('umsa-yes');
 		}

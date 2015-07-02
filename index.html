@@ -47,11 +47,31 @@
 	
 		<div id='container'>
 			
-			<section id='address'>
+			<section id="public">
+				
+				<div class='row'>
+					<h2>Will your event be open to the general public?</h2>
+					<span class='button' id='public-yes'>Yes!</span> 
+					<span class='button' id='public-no'>No.</span>
+				</div>
+				
+			</section>
+			
+			<section id="ticket-sales" class='hidden'>
+				
+				<div class='row'>
+					<h2>Will you be selling tickets to your event?</h2>
+					<span class='button' id='tickets-yes'>Yes!</span> 
+					<span class='button' id='tickets-no'>No.</span>
+				</div>
+				
+			</section>
+			
+			<section id='address' class='hidden'>
 				
 				<div class='row'>
 					
-					<h2 class='row bold'>First, we need to know where your event will be held.</h2>
+					<h2 class='row'>We need to know where your event will be held.</h2>
 				
 				</div>
 				
@@ -61,7 +81,7 @@
 						
 						<div>
 							<h4>Do you know the address of where you’ll have the event?</h4>
-							<span class='button' id='address-yes'>Yes!</span> <!-- show AmIinMiami -->									<span class='button' id='address-no'>No.</span>
+							<span class='button' id='address-yes'>Yes!</span> <!-- show AmIinMiami -->							<span class='button' id='address-no'>No.</span>
 						</div>
 							
 						<div class='hidden' id='umsa'>
@@ -87,7 +107,7 @@
 					<!-- address-search -->
 					<form id='address' class='hidden'>
 						
-						<h3>Please enter your address.</h3>
+						<h4>Please enter your address.</h4>
 						<input type='text' id='input-address' placeholder='818 NE 71 Street'></input>
 						<span class='button active' id='submit-address' type='submit'>Submit</span>
 					
@@ -97,7 +117,7 @@
 					
 					<div id='address-value' class='hidden'>
 						
-						<h3>You entered the address:</h3>
+						<h4>You entered the address:</h4>
 						<span class='value'></span>
 						
 					</div>
@@ -127,9 +147,9 @@
 					<div id='temp-structures'>
 						<h4>Will your event be open to the public, and use temporary structures?</h4>
 						
-						<span class='button' id='public-yes'>Yes!</span> <!-- [SHOW SHORT-TERM, HIDE SPECIAL/UMSA-AND-SPECIAL] -->
-						<span class='button' id='public-no'>No.</span> <!-- [SHOW SPECIAL/UMSA-AND-SPECIAL, HIDE UMSA-AND-SHORT-TERM] -->
-						<span class='button' id='public-whatIs'>What's a "temporary structure?"</span> <!-- Go where? -->
+						<span class='button' id='structure-yes'>Yes!</span> <!-- [SHOW SHORT-TERM, HIDE SPECIAL/UMSA-AND-SPECIAL] -->
+						<span class='button' id='structure-no'>No.</span> <!-- [SHOW SPECIAL/UMSA-AND-SPECIAL, HIDE UMSA-AND-SHORT-TERM] -->
+						<span class='button' id='structure-whatIs'>What's a "temporary structure?"</span> <!-- Go where? -->
 					</div>
 					
 					<div id='300-plus' class='hidden'>
@@ -260,6 +280,7 @@
 						<span class='button' id='type-sale'>I'm selling Christmas trees, pumpkins, or sparklers.</span> <!-- [SHOW B1, HIDE F/B2/B3] -->
 						<span class='button' id='type-carnival'>My event would be considered a carnival or a tent revival.</span> <!--  [SHOW B2, HIDE F/B1/B3] -->
 						<span class='button' id='type-assembly'>My event would be considered an assembly, circus or sporting event.</span> <!-- [SHOW F/B3, HIDE B1/B2] -->
+						<span class='button' id='type-none'>None of these apply.</span> <!-- [SHOW F/B3, HIDE B1/B2] -->
 
 				</div>
 				
@@ -282,6 +303,11 @@
 						
 						<p>Signed "waivers of objection" from nearby homeowners.  If your event is deemed a tent revival or a carnival by the county - or this is your third short-term event on a single property within the span of 12 months - you’ll need the names, addresses, phone numbers and signatures of nearby homeowners. You’ll need the signatures of 100% of the homeowners 500 feet from the venue, or 80% of homeowners 1000 feet from the venue.</p>
 
+					</div>
+					
+					<div id='type-none' class='hidden module'>
+						
+						<p>Carry on!</p>
 					</div>
 					
 				</div>
@@ -333,6 +359,13 @@
 						
 				<h1>You're done! You should now have all of the information you need to apply for a short-term events permit -- or not.</h1>
 			
+			</section>
+			
+			<section id='finished-not-public' class='finished row hidden'>
+				
+				<h1>You're done!</h1>
+				<p>Your event is not open to the general public, and you're not selling tickets for admission. Based on that, you don't need a short-term event permit from Miami-Dade County. If you're in a municipality, though, you should still check with your city government to make sure you're totally covered.</p>
+				
 			</section>
 			
 			<section id='finished-do-not-apply' class='finished row hidden'>
