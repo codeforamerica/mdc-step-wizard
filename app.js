@@ -290,7 +290,8 @@ $(document).ready(function() {
 			$('#umsa').removeClass('hidden');
 			$('form#address').addClass('hidden');	//in case someone hit 'yes' first.
 			txt += '<br>This address is not in unincorporated Miami-Dade County.';
-		
+			showModules('umsa-no');
+			
 		} else {
 			
 			console.log('you are in umsa. continue.');
@@ -298,10 +299,11 @@ $(document).ready(function() {
 			
 			//$('#public-with-structures').removeClass('hidden');
 			txt += '<br>This address is located in unincorporated Miami-Dade County.';
+			showModules('umsa-yes');
 		}
 		
 		//$('#county-parks').removeClass('hidden');
-		showModules('umsa-no');
+		
 		$('#address-value .value').html(txt);
 	}
 	
