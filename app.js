@@ -219,6 +219,10 @@ $(document).ready(function() {
 	   var lat;
 	   var lng;
 	   
+	   //hacky loader to give user feedback
+	   $("#loader").removeClass('hidden');
+	   $('#loader').html("<h3>Please wait</h3><p>We're checking to see if your address is in unincorporated Miami-Dade County.</p>");
+	   
 	    geocoder.geocode( { 'address': address}, function(results, status) {
 		    
 	    	if (status == google.maps.GeocoderStatus.OK) {
@@ -274,6 +278,9 @@ $(document).ready(function() {
 	function showUMSA() {
 		
 		console.log('show UMSA:', municipality);
+		
+		//hide hacky loader
+		$('#loader').addClass('hidden');
 		
 		var txt = $('#address-value .value').text();
 		console.log('the address is:' , txt);
