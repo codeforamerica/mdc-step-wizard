@@ -208,6 +208,11 @@ $(document).ready(function() {
 			
 				showHide(['div#cu-yes', '#street-closure'],['div#cu-no']);
 				break;
+				
+			case 'cu-notSure':
+			
+				showHide(['div#cu-notSure', '#street-closure'],['div#cu-no', 'div#cu-yes']);
+				break;
 			
 			case 'street-yes':
 			

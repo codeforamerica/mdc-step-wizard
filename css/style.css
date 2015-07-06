@@ -108,3 +108,9 @@ section:last-child {
 	
 	margin-bottom:30px;
 }
+
+.button {
+	
+	min-height:38px !important;
+	height: auto !important;
+}
