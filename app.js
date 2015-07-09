@@ -115,14 +115,27 @@ $(document).ready(function() {
 			case 'address-no':
 			
 				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
-				showHide(['#umsa', '#no-address'], ['form#address']);
+				showHide(['#county-parks'], ['form#address']);
 				$('#no-address .response').text("You don't have an address for your event yet.");
+				break;
+				
+			case 'park-yes':
+			
+				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
+				showHide(['#finished-park'], ['#finished-success', '#finished-do-not-apply', '#finished-success', '#finished-not-sure', '#finished-no-structure'])
+				//$('#finished-park').removeClass('hidden');
+				console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
+				break;
+				
+			case 'park-no':
+			
+				showHide(['#umsa'], [])
 				break;
 				
 			case 'umsa-yes':
 				
 				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
-				showHide(['#county-parks'], [])
+				showHide(['#public-with-structures'], [])
 				break;
 				
 			case 'umsa-no':
@@ -139,18 +152,7 @@ $(document).ready(function() {
 				console.log("END THE WIZARD");
 				break;
 			
-			case 'park-yes':
-			
-				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
-				showHide(['#finished-park'], ['#finished-success', '#finished-do-not-apply', '#finished-success', '#finished-not-sure', '#finished-no-structure'])
-				//$('#finished-park').removeClass('hidden');
-				console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
-				break;
-				
-			case 'park-no':
-			
-				showHide(['#public-with-structures'], [])
-				break;
+		
 			
 			case 'submit-address':
 				
