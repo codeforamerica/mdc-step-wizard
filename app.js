@@ -5,6 +5,24 @@ $(document).ready(function() {
 	//init geocoder, so that it's ready to go
 	var geocoder;
 	var municipality; 
+	var currentNode;
+	var sections = [];
+	
+	function labelSections() {
+		
+		$('section').each(function() {
+			
+			sections.push(this);
+					
+		})
+		
+		for(var i = 0; i < sections.length; i++) {
+			
+			var attr = i.toString() + '-section';
+			$(sections[i]).addClass(attr);
+			//console.log(i, 'labeling', attr);
+		}
+	}
 	
 	function initialize() {
 	
@@ -14,6 +32,7 @@ $(document).ready(function() {
 	}
 
   	initialize();
+	labelSections();
 	
 	//button states
 	$('.button').click(function(e) {
@@ -55,12 +74,20 @@ $(document).ready(function() {
 		
 	}
 	
+	function setCurrentNode(id) {
+		
+		console.log($('div' + id).closest('section'));
+		
+	}
+	
 	function resetFinishers() {
 		
 		$('.finished').addClass('hidden');	
 	}
 	
 	function showHide(showThese, hideThose) {
+		//console.log('show this:', showThese);
+		//console.log('hide this:', hideThose);
 		
 		for(var i = 0; i < showThese.length; i++) {
 			
@@ -78,31 +105,27 @@ $(document).ready(function() {
 		console.log('show module: ', buttonID);
 		
 		resetFinishers();
+		setCurrentNode('#' + buttonID);
 		
 		switch(buttonID) {
 			
 			case 'public-yes':
 			
-				reset(['#ticket-sales', '#address', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
-				showHide(['#address'], []);
-
+				showHide(['#geolocator'], ['#ticket-sales']);
 				break;
 				
 			case 'public-no':
 			
-				reset(['#ticket-sales', '#address', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
-				showHide(['#ticket-sales'], []);
+				showHide(['#ticket-sales'], ['#geolocator', '#address', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				break;
 			
 			case 'tickets-yes':
 			
-				reset(['#address', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
-				showHide(['#address'], []);
+				showHide(['#geolocator'], []);
 				break;
 				
 			case 'tickets-no':
 				
-				reset(['#address', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#finished-not-public'], []);
 				break;
 				
@@ -231,6 +254,17 @@ $(document).ready(function() {
 				showHide(['#special-types','div#street-no'],['div#street-yes', 'div#street-yesAgain']);
 				break;
 			
+			case 'third-yes':
+			
+				showHide(['div#third-yes', 'div#types'],[]);
+				break;
+				
+			case 'third-no':
+			
+				showHide(['div#third-no', 'div#types'],['div#third-yes']);
+
+				break;
+				
 			case 'type-sale':
 			
 				showHide(['#health', 'div#type-sale'],['div#type-carnival','div#type-assembly']);
@@ -251,17 +285,6 @@ $(document).ready(function() {
 			case 'type-none':
 			
 				showHide(['#health'],['div#type-assembly', 'div#type-sale','div#type-carnival']);
-				break;
-				
-			case 'third-yes':
-			
-				showHide(['div#third-yes'],['div#type-assembly', 'div#type-sale','div#type-carnival']);
-				break;
-				
-			case 'third-no':
-			
-				showHide(['div#third-no'],[['div#third-yes'],'div#type-assembly', 'div#type-sale','div#type-carnival']);
-
 				break;
 				
 			case 'health-restroom':
