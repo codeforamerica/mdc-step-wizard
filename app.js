@@ -250,7 +250,18 @@ $(document).ready(function() {
 				
 			case 'type-none':
 			
-				howHide(['#health'],['div#type-assembly', 'div#type-sale','div#type-carnival']);
+				showHide(['#health'],['div#type-assembly', 'div#type-sale','div#type-carnival']);
+				break;
+				
+			case 'third-yes':
+			
+				showHide(['div#third-yes'],['div#type-assembly', 'div#type-sale','div#type-carnival']);
+				break;
+				
+			case 'third-no':
+			
+				showHide(['div#third-no'],[['div#third-yes'],'div#type-assembly', 'div#type-sale','div#type-carnival']);
+
 				break;
 				
 			case 'health-restroom':

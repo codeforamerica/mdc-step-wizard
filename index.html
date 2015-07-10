@@ -81,7 +81,7 @@
 						
 						<div>
 							<h4>Do you know the address of where you’ll have the event?</h4>
-							<span class='button' id='address-yes'>Yes!</span> <!-- show AmIinMiami -->							<span class='button' id='address-no'>No.</span>
+							<span class='button' id='address-yes'>Yes!</span> <!-- show AmIinMiami -->				<span class='button' id='address-no'>No.</span>
 						</div>
 							
 						<div class='hidden' id='county-parks'>
@@ -95,7 +95,8 @@
 
 						<div class='hidden' id='umsa'>
 							
-							<h4>Is your event being held in unincorporated Miami-Dade County?</h4>										<span class='button' id='umsa-yes'>Yes!</span> <!-- hide not-in-umsa -->
+							<h4>Is your event being held in unincorporated Miami-Dade County?</h4>						
+							<span class='button' id='umsa-yes'>Yes!</span> <!-- hide not-in-umsa -->
 							<span class='button' id='umsa-no'>No.</span> <!-- show not-in-umsa -->
 							<span class='button' id='umsa-notSure'>I'm not sure.</span> <!-- Go where? -->
 							
@@ -185,13 +186,6 @@
 					</div>-->
 					
 				</div>
-				
-			</section>
-			
-			<section id='temporary-structure-definition' class='hidden alert'>
-				
-				<h4>Temporary Structures</h4>
-				
 				
 			</section>
 			
@@ -291,6 +285,13 @@
 
 				</div>
 				
+				<div class='six columns question' id='third-event'>
+					
+					<h4>Is this your third event on the same property within the last 12 months?</h4>
+					<span class='button' id='third-yes'>Yes.</span> <!-- [SHOW B1, HIDE F/B2/B3] -->
+					<span class='button' id='third-no'>No.</span> <!--  [SHOW B2, HIDE F/B1/B3] -->
+				</div>		
+						
 				<div class='six columns answer'>
 					
 					<div id='type-sale' class='hidden module'>
@@ -308,14 +309,27 @@
 					<div id='type-assembly' class='hidden module'>
 						<p>Have you examined the MDFR safety inspection checklist for carnivals or tent revivals?</p>
 						
-						<p>Signed "waivers of objection" from nearby homeowners.  If your event is deemed a tent revival or a carnival by the county - or this is your third short-term event on a single property within the span of 12 months - you’ll need the names, addresses, phone numbers and signatures of nearby homeowners. You’ll need the signatures of 100% of the homeowners 500 feet from the venue, or 80% of homeowners 1000 feet from the venue.</p>
+						
 
 					</div>
 					
 					<div id='type-none' class='hidden module'>
 						
 						<p>Carry on!</p>
+						
 					</div>
+					
+					<div id='third-yes'>
+						
+						<p>You need signed "waivers of objection" from nearby homeowners. If this is your third short-term event on a single property within the span of 12 months - you’ll need the names, addresses, phone numbers and signatures of nearby homeowners. You’ll need the signatures of 100% of the homeowners 500 feet from the venue, or 80% of homeowners 1000 feet from the venue.</p>
+						
+					</div>
+					
+					<div id='third-no'>
+					
+						<p>What goes here?</p>	
+					</div>
+					
 					
 				</div>
 				
