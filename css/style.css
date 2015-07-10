@@ -51,7 +51,8 @@ footer p {
 
 .hidden {
 	
-	display:none;
+	/*display:none;*/
+	
 }
 
 #container {
