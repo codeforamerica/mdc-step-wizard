@@ -32,7 +32,7 @@ $(document).ready(function() {
 	}
 
   	initialize();
-	labelSections();
+	//labelSections();
 	
 	//button states
 	$('.button').click(function(e) {
@@ -55,7 +55,6 @@ $(document).ready(function() {
 		
 		$('.button').each(function() {
 			
-			//console.log($(this).attr('id').split('-')[0]);
 			if($(this).attr('id').split('-')[0] == id.split('-')[0]) {
 				
 				$(this).removeClass('active');
