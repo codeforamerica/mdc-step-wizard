@@ -114,3 +114,10 @@ section:last-child {
 	min-height:38px !important;
 	height: auto !important;
 }
+
+.alert {
+	
+	padding:20px;
+	color:orange;
+	font-weight:bold;
+}
