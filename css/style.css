@@ -121,3 +121,20 @@ section:last-child {
 	color:orange;
 	font-weight:bold;
 }
+
+#loader {
+	
+	position:relative;
+}
+
+.spinner {
+	
+	top:75px !important;
+	
+}
+
+#loader p {
+	
+	padding-top:60px;
+	
+}
