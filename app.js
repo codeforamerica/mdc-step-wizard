@@ -310,6 +310,11 @@ $(document).ready(function() {
 			
 				showHide(['div#health-none','#finished-success'],['div#health-restroom','div#health-foodsales','div#health-foodtrucks']);
 				break;
+				
+			case 'reset':
+			
+				location.reload();
+				break;
 			
 		}
 	}
