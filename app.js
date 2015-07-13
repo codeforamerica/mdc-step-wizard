@@ -262,24 +262,28 @@ $(document).ready(function() {
 				
 			case 'type-sale':
 			
-				showHide(['#health', 'div#type-sale'],['div#type-carnival','div#type-assembly']);
+				showHide(['#health', 'div#type-sale'],['div#type-carnival','div#type-assembly', 'div#type-sparkler']);
 				break;
 				
+			case 'type-sparkler':
+			
+				showHide(['#health', 'div#type-sparkler'],['div#type-carnival', 'div#type-sale', 'div#type-assembly']);
+				break;
 				
 			case 'type-carnival':
 			
-				showHide(['#health', 'div#type-carnival'],['div#type-sale', 'div#type-assembly']);
+				showHide(['#health', 'div#type-carnival'],['div#type-sale', 'div#type-assembly', 'div#type-sparkler']);
 				break;
 				
 				
 			case 'type-assembly':
 			
-				showHide(['#health', 'div#type-assembly'],['div#type-sale','div#type-carnival']);
+				showHide(['#health', 'div#type-assembly'],['div#type-sale','div#type-carnival', 'div#type-sparkler']);
 				break;
 				
 			case 'type-none':
 			
-				showHide(['#health'],['div#type-assembly', 'div#type-sale','div#type-carnival']);
+				showHide(['#health'],['div#type-assembly', 'div#type-sale','div#type-carnival', 'div#type-sparkler']);
 				break;
 				
 			case 'health-restroom':
