@@ -120,24 +120,22 @@ $(document).ready(function() {
 			
 			case 'tickets-yes':
 			
-				showHide(['#geolocator'], []);
+				showHide(['#geolocator'], ['#finished-not-public']);
 				break;
 				
 			case 'tickets-no':
 				
-				showHide(['#finished-not-public'], []);
+				showHide(['#finished-not-public'], ['#geolocator']);
 				break;
 				
 			case 'address-yes':
 				
-				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
-				showHide(['form#address'], ['#no-address', '#umsa']);
+				showHide(['form#address'], ['#no-address', '#umsa', '#county-parks']);
 				break;
 				
 			case 'address-no':
 			
-				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
-				showHide(['#county-parks'], ['form#address']);
+				showHide(['#county-parks'], ['form#address', '#address-value', '#public-with-structures']);
 				$('#no-address .response').text("You don't have an address for your event yet.");
 				break;
 				
@@ -173,9 +171,7 @@ $(document).ready(function() {
 				showHide(['#finished-not-sure'], [])
 				console.log("END THE WIZARD");
 				break;
-			
-		
-			
+					
 			case 'submit-address':
 				
 				var addy = $('input#input-address').val();
@@ -204,7 +200,7 @@ $(document).ready(function() {
 			
 			case 'structure-no':
 			
-				showHide(['#finished-no-structure'],['div#tent-yes', '#300-plus', '#temporary-structure-definition']);
+				showHide(['#finished-no-structure'],['div#tent-yes', '#300-plus', '#temporary-structure-definition', '#tent-no']);
 				break;
 			
 			case 'structure-whatIs':
@@ -225,12 +221,12 @@ $(document).ready(function() {
 			
 			case 'cu-no':
 			
-				showHide(['div#cu-no', '#street-closure'],['div#cu-yes']);
+				showHide(['div#cu-no', '#street-closure'],['div#cu-yes', 'div#cu-notSure']);
 				break;
 			
 			case 'cu-yes':
 			
-				showHide(['div#cu-yes', '#street-closure'],['div#cu-no']);
+				showHide(['div#cu-yes', '#street-closure'],['div#cu-no', 'div#cu-notSure']);
 				break;
 				
 			case 'cu-notSure':
@@ -255,7 +251,7 @@ $(document).ready(function() {
 			
 			case 'third-yes':
 			
-				showHide(['div#third-yes', 'div#types'],[]);
+				showHide(['div#third-yes', 'div#types'],['div#third-no']);
 				break;
 				
 			case 'third-no':
