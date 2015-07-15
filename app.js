@@ -141,7 +141,7 @@ $(document).ready(function() {
 				
 			case 'public-no':
 			
-				showHide(['#ticket-sales'], ['#geolocator', '#address', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
+				showHide(['#ticket-sales'], ['#county-parks','#geolocator', '#address', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				break;
 			
 			case 'tickets-yes':
@@ -167,9 +167,7 @@ $(document).ready(function() {
 				
 			case 'park-yes':
 			
-				showHide(['#finished-park'], ['#finished-success', '#finished-do-not-apply', '#finished-success', '#finished-not-sure', '#finished-no-structure'])
-				//$('#finished-park').removeClass('hidden');
-				console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
+				showHide(['#finished-park'], ['#finished-success', '#finished-do-not-apply', '#finished-success', '#finished-not-sure', '#finished-no-structure', '#geolocator'])
 				break;
 				
 			case 'park-no':
@@ -225,7 +223,7 @@ $(document).ready(function() {
 			
 			case 'structure-no':
 			
-				showHide(['#finished-no-structure'],['div#tent-yes', '#300-plus', '#temporary-structure-definition', '#tent-no']);
+				showHide(['#finished-no-structure'],['#public-with-structures #public-yes', 'div#tent-yes', '#300-plus', '#temporary-structure-definition', 'div#tent-no']);
 				break;
 			
 			case 'structure-whatIs':
