@@ -69,7 +69,7 @@ $(document).ready(function() {
 		
 	})
 	
-	$("#input-address").keyup(function(event){
+	$("span#input-address").keyup(function(event){
 	    if(event.keyCode == 13){
 	        $("#submit-address").click();
 	    }
@@ -124,6 +124,7 @@ $(document).ready(function() {
 		}
 	}
 	
+	//the body of the work
 	function showModules(buttonID) {
 		
 		console.log('show module: ', buttonID);
@@ -135,7 +136,7 @@ $(document).ready(function() {
 			
 			case 'public-yes':
 			
-				showHide(['#geolocator'], ['#ticket-sales']);
+				showHide(['#county-parks'], ['#ticket-sales']);
 				break;
 				
 			case 'public-no':
@@ -160,13 +161,12 @@ $(document).ready(function() {
 				
 			case 'address-no':
 			
-				showHide(['#county-parks'], ['form#address', '#address-value', '#public-with-structures']);
+				showHide(['#umsa'], ['form#address', '#address-value', '#public-with-structures']);
 				$('#no-address .response').text("You don't have an address for your event yet.");
 				break;
 				
 			case 'park-yes':
 			
-				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#finished-park'], ['#finished-success', '#finished-do-not-apply', '#finished-success', '#finished-not-sure', '#finished-no-structure'])
 				//$('#finished-park').removeClass('hidden');
 				console.log("END THE WIZARD -- not enough info to continue. Send to parks.");
@@ -174,7 +174,7 @@ $(document).ready(function() {
 				
 			case 'park-no':
 			
-				showHide(['#umsa'], [])
+				showHide(['#geolocator'], [])
 				break;
 				
 			case 'umsa-yes':
@@ -354,22 +354,29 @@ $(document).ready(function() {
 	   //hacky loader to give user feedback
 	   $("#loader").removeClass('hidden');
 	   $('#loader').html("<h3>Please wait</h3><p>We're checking to see if your address is in unincorporated Miami-Dade County.</p>");
+	   
+	   //spinning loader graphic
 	   var target = document.getElementById('loader')
 	   var spinner = new Spinner(opts).spin(target);
-	   console.log(target, spinner);
-	    geocoder.geocode( { 'address': address}, function(results, status) {
+	   
+	    geocoder.geocode( { 'address': address,
+		    				'componentRestrictions': {'administrativeArea' : 'Miami-Dade County'}  
+							}, function(results, status) {
 		    
 	    	if (status == google.maps.GeocoderStatus.OK) {
 		      
 			    //console.log(results[0].geometry.location);
-			    console.log(results);
-			
-				lat = results[0].geometry.location.A;
-			    lng = results[0].geometry.location.F;
+			    //console.log("RESULTS");
+			    //console.log(results);
 			    
-			    console.log(lat, lng);
-			    AIIM(lat, lng);		//am I in miami?
-
+			    lat = results[0].geometry.location.A;
+				lng = results[0].geometry.location.F;
+				console.log(lat, lng);
+				
+			    //check to be sure this address is in Florida
+			    
+			    AIIM(lat, lng);
+			   
 		    } else {
 		      
 		        alert("Geocode was not successful for the following reason: " + status);
@@ -381,30 +388,82 @@ $(document).ready(function() {
 	    	    
 	}
 	
+	function printResults(results) {
+		
+		console.log('PRINTING RESULTS:');
+		for (var i = 0; i < results.length; i++) {
+			
+			console.log(results[i].address_components[2] , ', ' , results[i].address_components[3], 'PARTIAL?', results[i].partial_match);
+			
+			console.log('LATLNG', results[i].geometry.location.A, results[i].geometry.location.F)
+			
+			if(results[i].partial_match != true) {
+				
+				
+			}
+		}
+		
+		
+	}
+	
 	function AIIM(latitude, longitude) {
 		
-		console.log("AIIM", latitude, longitude);
+			console.log("THIS IS AM I IN MIAMI, ORIGINAL");
 		
 		$.ajax({
 			url: "http://still-eyrie-4551.herokuapp.com/areas",
-			data: {"lat":latitude, "lon":longitude, "include_geom":false},
+			data: {"lat":latitude, "lon":longitude, include_geom:false},
 			dataType: "jsonp",
 			contentType: "application/json; charset=utf-8",
 			//jsonp: false
 		}).done(function(data) {
 			
-			console.log('success', data);
+			console.log('success, AIIM', data);
 			
 			if(data.features.length > 0) {
-				
+								
 				municipality = data.features[0].properties.NAME;
+				console.log("muni if not UMSA is: ", municipality);
 				
 			} else {
 				
+				console.log('what this returns if not muni:', data.features);
 				municipality = 'UMSA';
 			}
 			
+			console.log("THIS ENDS AM I IN MIAMI, ORIGINAL");
+			
 			showUMSA();
+		})
+		
+	}
+	
+	function AIIMAgain(latitude, longitude) {
+		
+		console.log("AIIM Again", latitude, longitude);
+		
+		$.ajax({
+			url: "http://census.codeforamerica.org/areas",
+			data: {"lat":latitude, "lon":longitude, "include_geom":false, "layers":'place'},
+			dataType: "jsonp",
+			contentType: "application/json; charset=utf-8",
+			//jsonp: false
+			
+		}).done(function(data) {
+			
+			console.log('success', data.features, data.features.length);
+			
+			/*if(data.features.length > 0) {
+				
+				municipality = data.features[0].properties.NAME;
+				console.log("muni if not UMSA is: ", municipality);
+			} else {
+				
+				console.log('what this returns if not muni:', data.features[0].properties.NAME);
+				municipality = 'UMSA';
+			}
+			
+			showUMSA();*/
 		})
 		
 	}
@@ -414,7 +473,7 @@ $(document).ready(function() {
 		console.log('show UMSA:', municipality);
 		
 		//hide hacky loader
-		//$('#loader').addClass('hidden');
+		$('#loader').addClass('hidden');
 		
 		var txt = $('#address-value .value').text();
 		console.log('the address is:' , txt);
