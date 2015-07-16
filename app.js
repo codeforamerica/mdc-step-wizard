@@ -146,7 +146,7 @@ $(document).ready(function() {
 			
 			case 'tickets-yes':
 			
-				showHide(['#geolocator'], ['#finished-not-public']);
+				showHide(['#county-parks'], ['#finished-not-public']);
 				break;
 				
 			case 'tickets-no':
