@@ -138,3 +138,9 @@ section:last-child {
 	padding-top:60px;
 	
 }
+
+#gMap {
+	
+	height:400px;
+	overflow:auto;
+}

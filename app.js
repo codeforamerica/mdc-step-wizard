@@ -4,7 +4,11 @@ $(document).ready(function() {
 	
 	//init geocoder, so that it's ready to go
 	var geocoder;
+	var map;
 	var municipality; 
+	var addressDisplay;
+	
+	//don't think I'm using these
 	var currentNode;
 	var sections = [];
 	
@@ -342,8 +346,6 @@ $(document).ready(function() {
 		}
 	}
 	
-	//end repetitive buttons
-	
 	function codeAddress(address) {
 		
 	   var lat;
@@ -363,7 +365,8 @@ $(document).ready(function() {
 		    
 	    	if (status == google.maps.GeocoderStatus.OK) {
 		      
-			    //console.log(results[0].geometry.location);
+			    console.log(results[0].formatted_address);
+			    addressDisplay = results[0].formatted_address;
 			    //console.log("RESULTS");
 			    //console.log(results);
 			    
@@ -371,6 +374,22 @@ $(document).ready(function() {
 				lng = results[0].geometry.location.F;
 				console.log(lat, lng);
 				
+				var latlng = new google.maps.LatLng(lat,lng);
+				var mapOptions = {
+				    center: latlng,
+				    zoom: 11,
+				    mapTypeId: google.maps.MapTypeId.TERRAIN
+				};
+				    
+				map = new google.maps.Map(document.getElementById("gMap"),
+			    mapOptions);
+			    
+			    var marker = new google.maps.Marker({
+				    position: latlng,
+				    map: map,
+				    title: 'Hello World!'
+				})
+								
 			    //check to be sure this address is in Florida
 			    
 			    AIIM(lat, lng);
@@ -383,7 +402,8 @@ $(document).ready(function() {
 		    
 	    });
 	    
-	    	    
+	    //25.7753° N, 80.2089° W
+	    
 	}
 	
 	function printResults(results) {
@@ -406,7 +426,7 @@ $(document).ready(function() {
 	
 	function AIIM(latitude, longitude) {
 		
-			console.log("THIS IS AM I IN MIAMI, ORIGINAL");
+		console.log("THIS IS AM I IN MIAMI, ORIGINAL");
 		
 		$.ajax({
 			url: "http://still-eyrie-4551.herokuapp.com/areas",
@@ -473,7 +493,7 @@ $(document).ready(function() {
 		//hide hacky loader
 		$('#loader').addClass('hidden');
 		
-		var txt = $('#address-value .value').text();
+		var txt = addressDisplay;
 		console.log('the address is:' , txt);
 		
 		if(municipality != 'UMSA') {
