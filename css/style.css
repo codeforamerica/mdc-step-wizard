@@ -114,3 +114,33 @@ section:last-child {
 	min-height:38px !important;
 	height: auto !important;
 }
+
+.alert {
+	
+	padding:20px;
+	color:orange;
+	font-weight:bold;
+}
+
+#loader {
+	
+	position:relative;
+}
+
+.spinner {
+	
+	top:75px !important;
+	
+}
+
+#loader p {
+	
+	padding-top:60px;
+	
+}
+
+#gMap {
+	
+	height:400px;
+	overflow:auto;
+}
