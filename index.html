@@ -27,12 +27,7 @@
     <link rel="stylesheet" type="text/css" href="css/skeleton.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src='http://fgnass.github.io/spin.js/spin.min.js'></script>
-    <script src='app.js' type="text/javascript"></script>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzCsQTTBA7AbrjxE6R5vwnZkL0q7Ev48Q">
-    </script>
+    
     
     <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -606,12 +601,24 @@ Fire watch is required for all tents with a capacity of 300 persons or greater. 
 				
 			</section>
 			
+			<section id="finished-print" class='hidden finished'>
+				<span class='button' id='print'>Get a PDF of what you need</span>
+			</section>
+			
 			<section id='restart'>
 				
 				<span class='button' id='reset'>Start over</span>
-				<span class='button' id='reset'>Get a PDF of what you need</span>
-				
+			
 			</section>
+			
+			
+			
+			<div class='hidden'>
+				I'm PDF content. And I'm visible, hopefully.
+				<div id='test-pdf'>
+					
+				</div>
+			</div>
 			
 					
 		<!--
@@ -700,5 +707,13 @@ If this inspection fails, the Event Holder will need to come into compliance and
 		</footer>
 			
 	</body>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src='http://fgnass.github.io/spin.js/spin.min.js'></script>
+  <script src='app.js' type="text/javascript"></script>
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzCsQTTBA7AbrjxE6R5vwnZkL0q7Ev48Q">
+  </script>
+  <script src='xepOnline.jqPlugin.js' type='text/javascript'></script> 
 	
 </html>
