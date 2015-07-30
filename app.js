@@ -35,8 +35,6 @@ $(document).ready(function() {
 		, position: 'absolute' // Element positioning
 	}
 	
-	
-	
 	function labelSections() {
 		
 		$('section').each(function() {
@@ -68,7 +66,24 @@ $(document).ready(function() {
 		
 		e.preventDefault();
 		showModules($(this).attr('id'));	
-		buttonReset($(this).attr('id'));
+		
+		var health_buttons = ['health-restroom', 'health-tanks', 'health-foodtrucks', 'health-foodsales'];
+		
+		for(var i = 0; i < health_buttons.length; i++) {
+			
+			console.log($(this).attr('id') , health_buttons[i]);
+			
+			if($(this).attr('id') == health_buttons[i]) {
+				
+				return false;
+				
+			} else {
+				
+				buttonReset($(this).attr('id'));
+				
+			}
+		}
+		
 		$(this).addClass('active');
 		
 	})
@@ -315,22 +330,22 @@ $(document).ready(function() {
 				
 			case 'health-restroom':
 			
-				showHide(['div#health-restroom','#finished-success'],['div#health-foodsales','div#health-foodtrucks','div#health-none']);
+				showHide(['div#health-restroom','#finished-success'],['div#health-none']);
 				break;
 				
 			case 'health-tanks':
 			
-				showHide(['div#health-restroom','#finished-success'],['div#health-foodsales','div#health-foodtrucks','div#health-none']);
+				showHide(['div#health-restroom','#finished-success'],['div#health-none']);
 				break;
 				
 			case 'health-foodtrucks':
 			
-				showHide(['div#health-foodtrucks','#finished-success'],['div#health-restroom','div#health-foodsales','div#health-none']);
+				showHide(['div#health-foodtrucks','#finished-success'],['div#health-none']);
 				break;
 			
 			case 'health-foodsales':
 			
-				showHide(['div#health-foodsales','#finished-success'],['div#health-restroom','div#health-foodtrucks','div#health-none']);
+				showHide(['div#health-foodsales','#finished-success'],['div#health-none']);
 				break;
 				
 			case 'health-none':
