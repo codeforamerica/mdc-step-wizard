@@ -67,25 +67,32 @@ $(document).ready(function() {
 		e.preventDefault();
 		showModules($(this).attr('id'));	
 		
+		//of all the messy ways to implement a stupid toggle.
 		var health_buttons = ['health-restroom', 'health-tanks', 'health-foodtrucks', 'health-foodsales'];
 		
-		for(var i = 0; i < health_buttons.length; i++) {
+		if($(this).attr('id').split('-')[0] == 'health' && $(this).attr('id') != 'health-none') {
 			
-			console.log($(this).attr('id') , health_buttons[i]);
+			$(this).addClass('active');
+			buttonReset('health-none');
 			
-			if($(this).attr('id') == health_buttons[i]) {
+		} else if($(this).attr('id') == 'health-none') {
+			
+			for(var i = 0; i < health_buttons.length; i++) {
 				
-				return false;
-				
-			} else {
-				
-				buttonReset($(this).attr('id'));
+				buttonReset(health_buttons[i]);
 				
 			}
+			
+			$(this).addClass('active');
+			
+		} else {
+			
+			buttonReset($(this).attr('id'));
+				$(this).addClass('active');
+
+			
 		}
-		
-		$(this).addClass('active');
-		
+				
 	})
 	
 	$("span#input-address").keyup(function(event){
