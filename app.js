@@ -1,5 +1,9 @@
 $(document).ready(function() {
 	
+	// require dependencies
+	//var PDFDocument = require 'pdfkit';
+	//var blobStream  = require 'blob-stream';
+	
 	console.log('hello world');
 	
 	//init geocoder, so that it's ready to go
@@ -548,5 +552,14 @@ $(document).ready(function() {
 		})
 	}
 	
+	/******************* HAPPY PDF-ING ********************/
+	
+	$('#print').click(function() {
+		
+		//return xepOnline.Formatter.Format('Usage',{render:'download'});
+		return xepOnline.Formatter.Format('test-pdf');
+			
+	})
+		
 	
 }) //close ready
