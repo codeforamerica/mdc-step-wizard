@@ -35,8 +35,6 @@ $(document).ready(function() {
 		, position: 'absolute' // Element positioning
 	}
 	
-	
-	
 	function labelSections() {
 		
 		$('section').each(function() {
@@ -68,9 +66,33 @@ $(document).ready(function() {
 		
 		e.preventDefault();
 		showModules($(this).attr('id'));	
-		buttonReset($(this).attr('id'));
-		$(this).addClass('active');
 		
+		//of all the messy ways to implement a stupid toggle.
+		var health_buttons = ['health-restroom', 'health-tanks', 'health-foodtrucks', 'health-foodsales'];
+		
+		if($(this).attr('id').split('-')[0] == 'health' && $(this).attr('id') != 'health-none') {
+			
+			$(this).addClass('active');
+			buttonReset('health-none');
+			
+		} else if($(this).attr('id') == 'health-none') {
+			
+			for(var i = 0; i < health_buttons.length; i++) {
+				
+				buttonReset(health_buttons[i]);
+				
+			}
+			
+			$(this).addClass('active');
+			
+		} else {
+			
+			buttonReset($(this).attr('id'));
+				$(this).addClass('active');
+
+			
+		}
+				
 	})
 	
 	$("span#input-address").keyup(function(event){
@@ -315,22 +337,22 @@ $(document).ready(function() {
 				
 			case 'health-restroom':
 			
-				showHide(['div#health-restroom','#finished-success'],['div#health-foodsales','div#health-foodtrucks','div#health-none']);
+				showHide(['div#health-restroom','#finished-success'],['div#health-none']);
 				break;
 				
 			case 'health-tanks':
 			
-				showHide(['div#health-restroom','#finished-success'],['div#health-foodsales','div#health-foodtrucks','div#health-none']);
+				showHide(['div#health-restroom','#finished-success'],['div#health-none']);
 				break;
 				
 			case 'health-foodtrucks':
 			
-				showHide(['div#health-foodtrucks','#finished-success'],['div#health-restroom','div#health-foodsales','div#health-none']);
+				showHide(['div#health-foodtrucks','#finished-success'],['div#health-none']);
 				break;
 			
 			case 'health-foodsales':
 			
-				showHide(['div#health-foodsales','#finished-success'],['div#health-restroom','div#health-foodtrucks','div#health-none']);
+				showHide(['div#health-foodsales','#finished-success'],['div#health-none']);
 				break;
 				
 			case 'health-none':
