@@ -140,12 +140,21 @@ $(document).ready(function() {
 	}
 	
 	function showHide(showThese, hideThose) {
-		//console.log('show this:', showThese);
+		console.log('show this:', (showThese).toString());
 		//console.log('hide this:', hideThose);
 		
 		for(var i = 0; i < showThese.length; i++) {
 			
 			$(showThese[i]).removeClass('hidden');
+		
+			var showMe = $(showThese[i]).attr('id').toString().split('-')[0];
+			
+			console.log(showMe);
+			
+			if(showMe == 'finished'){
+				
+				$('#finished-print').removeClass('hidden');
+			}
 		}
 		
 		for(var i = 0; i < hideThose.length; i++) {
@@ -556,8 +565,27 @@ $(document).ready(function() {
 	
 	$('#print').click(function() {
 		
-		//return xepOnline.Formatter.Format('Usage',{render:'download'});
-		return xepOnline.Formatter.Format('test-pdf');
+		var appended = 0; 
+		
+		$('#test-pdf').prepend("<h4>This is a record of your STEP information.</h4>")
+				
+		$('.module').each(function() {
+			
+			if($(this).hasClass('hidden') == false ) {
+				
+				//console.log($(this), 'IS NOT HIDDEN');
+				$('#test-pdf').prepend($(this));
+				appended++;
+			}
+			
+		})
+		
+		if(appended == 0) {
+			
+			$('#test-pdf').prepend("It looks like we don't have any information specific to your case.");
+		}
+		
+		return xepOnline.Formatter.Format('test-pdf', {render:'newwin'});
 			
 	})
 		
