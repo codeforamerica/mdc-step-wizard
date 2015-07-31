@@ -99,9 +99,10 @@ $(document).ready(function() {
 				
 	})
 	
-	$("span#input-address").keyup(function(event){
+	$("#address").keypress(function(event){
 	    if(event.keyCode == 13){
 	        $("#submit-address").click();
+            return false;
 	    }
 	});
 
