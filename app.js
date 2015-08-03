@@ -1,9 +1,5 @@
 $(document).ready(function() {
 	
-	// require dependencies
-	//var PDFDocument = require 'pdfkit';
-	//var blobStream  = require 'blob-stream';
-	
 	console.log('hello world');
 	
 	//init geocoder, so that it's ready to go
@@ -12,10 +8,13 @@ $(document).ready(function() {
 	var municipality; 
 	var addressDisplay;
 	
-	//don't think I'm using these
-	var currentNode;
+	
+	var currentNode = 0;
+	
+	//don't think I'm using these 
 	var sections = [];
 	
+	//loader options
 	var opts = {
 		  lines: 11 // The number of lines to draw
 		, length: 0 // The length of each line
@@ -55,6 +54,7 @@ $(document).ready(function() {
 		}
 	}
 	
+	//initialize geo stuff
 	function initialize() {
 	
 	   geocoder = new google.maps.Geocoder();
@@ -62,13 +62,27 @@ $(document).ready(function() {
 	   
 	}
 
-  	initialize();
+  initialize();
 	//labelSections();
 	
 	//button states
 	$('.button').click(function(e) {
 		
 		e.preventDefault();
+		
+		currentNode = parseInt($(this).closest('section').attr('class').split(' ')[0]);
+		
+		//hide all subsequent sections
+		$('section').each(function() {
+			
+			console.log("SECTION: ", $(this).attr('class'));
+			var node = parseInt($(this).attr('class').split(' ')[0]);
+			if(currentNode < node) {
+				
+				$(this).addClass('hidden');
+			}
+		})
+		
 		showModules($(this).attr('id'));	
 		
 		//of all the messy ways to implement a stupid toggle.
@@ -92,9 +106,8 @@ $(document).ready(function() {
 		} else {
 			
 			buttonReset($(this).attr('id'));
-				$(this).addClass('active');
+			$(this).addClass('active');
 
-			
 		}
 				
 	})
