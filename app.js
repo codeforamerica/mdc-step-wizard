@@ -8,7 +8,6 @@ $(document).ready(function() {
 	var municipality; 
 	var addressDisplay;
 	
-	
 	var currentNode = 0;
 	
 	//don't think I'm using these 
@@ -38,22 +37,6 @@ $(document).ready(function() {
 		, position: 'absolute' // Element positioning
 	}
 	
-	function labelSections() {
-		
-		$('section').each(function() {
-			
-			sections.push(this);
-					
-		})
-		
-		for(var i = 0; i < sections.length; i++) {
-			
-			var attr = i.toString() + '-section';
-			$(sections[i]).addClass(attr);
-			//console.log(i, 'labeling', attr);
-		}
-	}
-	
 	//initialize geo stuff
 	function initialize() {
 	
@@ -63,7 +46,6 @@ $(document).ready(function() {
 	}
 
   initialize();
-	//labelSections();
 	
 	//button states
 	$('.button').click(function(e) {
@@ -71,17 +53,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		
 		currentNode = parseInt($(this).closest('section').attr('class').split(' ')[0]);
-		
-		//hide all subsequent sections
-		$('section').each(function() {
-			
-			console.log("SECTION: ", $(this).attr('class'));
-			var node = parseInt($(this).attr('class').split(' ')[0]);
-			if(currentNode < node) {
-				
-				$(this).addClass('hidden');
-			}
-		})
+		resetSubsequentNodes(currentNode);
 		
 		showModules($(this).attr('id'));	
 		
@@ -112,6 +84,28 @@ $(document).ready(function() {
 				
 	})
 	
+	//hide all subsequent sections from the current one
+	//in case a user backs way up and changes an answer
+	function resetSubsequentNodes(node) {
+		
+		$('section').each(function() {
+			
+			var nextNode = parseInt($(this).attr('class').split(' ')[0]);
+			
+			if(node < nextNode) {
+				
+				$(this).addClass('hidden');
+				$(this).find('.button').each(function() {
+				
+					buttonReset($(this).attr('id'));
+					
+				})
+
+			}
+			
+		})
+	}	
+	
 	$("#address").keypress(function(event){
 	    if(event.keyCode == 13){
 	        $("#submit-address").click();
@@ -129,23 +123,6 @@ $(document).ready(function() {
 				$(this).removeClass('active');
 			}
 		})
-	}
-	
-	function reset(nodes) {
-		
-		for(var i = 0; i < nodes.length; i++) {
-			
-			$(nodes[i]).addClass('hidden');
-			$(nodes[i] + ' .button').removeClass('active');
-		}
-		
-		
-	}
-	
-	function setCurrentNode(id) {
-		
-		console.log($('div' + id).closest('section'));
-		
 	}
 	
 	function resetFinishers() {
