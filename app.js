@@ -131,8 +131,6 @@ $(document).ready(function() {
 	}
 	
 	function showHide(showThese, hideThose) {
-		console.log('show this:', (showThese).toString());
-		//console.log('hide this:', hideThose);
 		
 		for(var i = 0; i < showThese.length; i++) {
 			
@@ -145,6 +143,7 @@ $(document).ready(function() {
 			if(showMe == 'finished'){
 				
 				$('#finished-print').removeClass('hidden');
+			
 			}
 		}
 		
@@ -206,22 +205,17 @@ $(document).ready(function() {
 				
 			case 'umsa-yes':
 				
-				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#public-with-structures'], [])
 				break;
 				
 			case 'umsa-no':
 			
-				reset(['#county-parks', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#finished-do-not-apply'], [])
-				console.log("END THE WIZARD");
 				break;
 			
 			case 'umsa-notSure':
 			
-				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#finished-not-sure'], [])
-				console.log("END THE WIZARD");
 				break;
 					
 			case 'submit-address':
@@ -257,7 +251,6 @@ $(document).ready(function() {
 			
 			case 'structure-whatIs':
 			
-				console.log("what is a temporary structure?");
 				showHide(['#temporary-structure-definition'],[]);
 				break;
 			
@@ -327,7 +320,6 @@ $(document).ready(function() {
 				showHide(['#health', 'div#type-carnival'],['div#type-sale', 'div#type-assembly', 'div#type-sparkler']);
 				break;
 				
-				
 			case 'type-assembly':
 			
 				showHide(['#health', 'div#type-assembly'],['div#type-sale','div#type-carnival', 'div#type-sparkler']);
@@ -370,6 +362,8 @@ $(document).ready(function() {
 			
 		}
 	}
+	
+	/******************* GEOCODING ********************/
 	
 	function codeAddress(address) {
 		
@@ -537,18 +531,7 @@ $(document).ready(function() {
 			showModules('umsa-yes');
 		}
 		
-		//$('#county-parks').removeClass('hidden');
-		
 		$('#address-value .value').html(txt);
-	}
-	
-	function showFinished() {
-		
-		$('.finished').each(function() {
-			
-			console.log('hiding finished');
-			$(this).addClass('hidden');
-		})
 	}
 	
 	/******************* HAPPY PDF-ING ********************/
@@ -563,7 +546,6 @@ $(document).ready(function() {
 			
 			if($(this).hasClass('hidden') == false ) {
 				
-				//console.log($(this), 'IS NOT HIDDEN');
 				$('#test-pdf').prepend($(this));
 				appended++;
 			}
