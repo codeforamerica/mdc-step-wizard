@@ -160,7 +160,6 @@ $(document).ready(function() {
 		console.log('show module: ', buttonID);
 		
 		resetFinishers();
-		setCurrentNode('#' + buttonID);
 		
 		switch(buttonID) {
 			
