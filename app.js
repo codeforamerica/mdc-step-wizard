@@ -582,7 +582,7 @@ $(document).ready(function() {
 		
 		if(appended == 0) {
 			
-			$('#test-pdf').prepend("It looks like we don't have any information specific to your case.");
+			$('#test-pdf').append("It looks like we don't have any information specific to your case. ");
 		}
 		
 		return xepOnline.Formatter.Format('test-pdf', {render:'newwin'});
