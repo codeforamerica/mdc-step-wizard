@@ -1,9 +1,5 @@
 $(document).ready(function() {
 	
-	// require dependencies
-	//var PDFDocument = require 'pdfkit';
-	//var blobStream  = require 'blob-stream';
-	
 	console.log('hello world');
 	
 	//init geocoder, so that it's ready to go
@@ -12,10 +8,12 @@ $(document).ready(function() {
 	var municipality; 
 	var addressDisplay;
 	
-	//don't think I'm using these
-	var currentNode;
+	var currentNode = 0;
+	
+	//don't think I'm using these 
 	var sections = [];
 	
+	//loader options
 	var opts = {
 		  lines: 11 // The number of lines to draw
 		, length: 0 // The length of each line
@@ -39,22 +37,7 @@ $(document).ready(function() {
 		, position: 'absolute' // Element positioning
 	}
 	
-	function labelSections() {
-		
-		$('section').each(function() {
-			
-			sections.push(this);
-					
-		})
-		
-		for(var i = 0; i < sections.length; i++) {
-			
-			var attr = i.toString() + '-section';
-			$(sections[i]).addClass(attr);
-			//console.log(i, 'labeling', attr);
-		}
-	}
-	
+	//initialize geo stuff
 	function initialize() {
 	
 	   geocoder = new google.maps.Geocoder();
@@ -62,13 +45,16 @@ $(document).ready(function() {
 	   
 	}
 
-  	initialize();
-	//labelSections();
+  initialize();
 	
 	//button states
 	$('.button').click(function(e) {
 		
 		e.preventDefault();
+		
+		currentNode = parseInt($(this).closest('section').attr('class').split(' ')[0]);
+		resetSubsequentNodes(currentNode);
+		
 		showModules($(this).attr('id'));	
 		
 		//of all the messy ways to implement a stupid toggle.
@@ -92,12 +78,33 @@ $(document).ready(function() {
 		} else {
 			
 			buttonReset($(this).attr('id'));
-				$(this).addClass('active');
+			$(this).addClass('active');
 
-			
 		}
 				
 	})
+	
+	//hide all subsequent sections from the current one
+	//in case a user backs way up and changes an answer
+	function resetSubsequentNodes(node) {
+		
+		$('section').each(function() {
+			
+			var nextNode = parseInt($(this).attr('class').split(' ')[0]);
+			
+			if(node < nextNode) {
+				
+				$(this).addClass('hidden');
+				$(this).find('.button').each(function() {
+				
+					buttonReset($(this).attr('id'));
+					
+				})
+
+			}
+			
+		})
+	}	
 	
 	$("#address").keypress(function(event){
 	    if(event.keyCode == 13){
@@ -118,31 +125,12 @@ $(document).ready(function() {
 		})
 	}
 	
-	function reset(nodes) {
-		
-		for(var i = 0; i < nodes.length; i++) {
-			
-			$(nodes[i]).addClass('hidden');
-			$(nodes[i] + ' .button').removeClass('active');
-		}
-		
-		
-	}
-	
-	function setCurrentNode(id) {
-		
-		console.log($('div' + id).closest('section'));
-		
-	}
-	
 	function resetFinishers() {
 		
 		$('.finished').addClass('hidden');	
 	}
 	
 	function showHide(showThese, hideThose) {
-		console.log('show this:', (showThese).toString());
-		//console.log('hide this:', hideThose);
 		
 		for(var i = 0; i < showThese.length; i++) {
 			
@@ -155,6 +143,7 @@ $(document).ready(function() {
 			if(showMe == 'finished'){
 				
 				$('#finished-print').removeClass('hidden');
+			
 			}
 		}
 		
@@ -170,7 +159,6 @@ $(document).ready(function() {
 		console.log('show module: ', buttonID);
 		
 		resetFinishers();
-		setCurrentNode('#' + buttonID);
 		
 		switch(buttonID) {
 			
@@ -217,22 +205,17 @@ $(document).ready(function() {
 				
 			case 'umsa-yes':
 				
-				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#public-with-structures'], [])
 				break;
 				
 			case 'umsa-no':
 			
-				reset(['#county-parks', '#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#finished-do-not-apply'], [])
-				console.log("END THE WIZARD");
 				break;
 			
 			case 'umsa-notSure':
 			
-				reset(['#public-with-structures', '#certificate-of-use', '#street-closure', '#special-types', '#health']);
 				showHide(['#finished-not-sure'], [])
-				console.log("END THE WIZARD");
 				break;
 					
 			case 'submit-address':
@@ -268,7 +251,6 @@ $(document).ready(function() {
 			
 			case 'structure-whatIs':
 			
-				console.log("what is a temporary structure?");
 				showHide(['#temporary-structure-definition'],[]);
 				break;
 			
@@ -338,7 +320,6 @@ $(document).ready(function() {
 				showHide(['#health', 'div#type-carnival'],['div#type-sale', 'div#type-assembly', 'div#type-sparkler']);
 				break;
 				
-				
 			case 'type-assembly':
 			
 				showHide(['#health', 'div#type-assembly'],['div#type-sale','div#type-carnival', 'div#type-sparkler']);
@@ -381,6 +362,8 @@ $(document).ready(function() {
 			
 		}
 	}
+	
+	/******************* GEOCODING ********************/
 	
 	function codeAddress(address) {
 		
@@ -548,18 +531,7 @@ $(document).ready(function() {
 			showModules('umsa-yes');
 		}
 		
-		//$('#county-parks').removeClass('hidden');
-		
 		$('#address-value .value').html(txt);
-	}
-	
-	function showFinished() {
-		
-		$('.finished').each(function() {
-			
-			console.log('hiding finished');
-			$(this).addClass('hidden');
-		})
 	}
 	
 	/******************* HAPPY PDF-ING ********************/
@@ -574,7 +546,6 @@ $(document).ready(function() {
 			
 			if($(this).hasClass('hidden') == false ) {
 				
-				//console.log($(this), 'IS NOT HIDDEN');
 				$('#test-pdf').prepend($(this));
 				appended++;
 			}
