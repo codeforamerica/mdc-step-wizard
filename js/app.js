@@ -1,6 +1,30 @@
 $(document).ready(function() {
 	
-	console.log('hello world');
+	/******************* TABLETOP.JS ********************/
+
+	var nodes = [];
+	
+  var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1l2cek8yICAK06ZJJ8Vbii76HJhdPb-0gAiWwJxwb3NM/pubhtml';
+
+  function initTabletop() {
+    Tabletop.init( { key: public_spreadsheet_url,
+                     callback: showInfo,
+                     simpleSheet: false,
+                     prettyColumnNames: false } )
+  }
+
+  function showInfo(data, tabletop) {
+    
+    nodes = tabletop.sheets('Questions & Responses').all()
+    
+    console.log(tabletop.model_names);
+    console.log('nodes:', nodes[4]);
+    console.log('nodes:', nodes[4].nodeid);
+  }
+	
+	initTabletop();
+	
+	/******************* EVERYTHING ELSE ********************/
 	
 	//init geocoder, so that it's ready to go
 	var geocoder;
