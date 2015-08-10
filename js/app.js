@@ -15,11 +15,62 @@ $(document).ready(function() {
 
   function showInfo(data, tabletop) {
     
+    //alert('data loaded');
     nodes = tabletop.sheets('Questions & Responses').all()
     
     console.log(tabletop.model_names);
     console.log('nodes:', nodes[4]);
-    console.log('nodes:', nodes[4].nodeid);
+    console.log('nodes:', nodes[4].nextnodeid);
+    
+    // build
+    // the first two rows of the table are helpers and don't need to get built
+    for(var i = 2; i < nodes.length; i++) {
+	    
+	    var headline = nodes[i].nodeheadline;
+	    var helpText = nodes[i].nodetext;
+	    var triggers = [];
+	    var buttons = [];
+	    
+	    triggers.push(
+		   
+		    {text: nodes[i].trigger1text, target: nodes[i].trigger1response}, 
+				{text: nodes[i].trigger2text, target: nodes[i].trigger2response},
+				{text: nodes[i].trigger3text, target: nodes[i].trigger3response},
+				{text: nodes[i].trigger4text, target: nodes[i].trigger4response},
+				{text: nodes[i].trigger5text, target: nodes[i].trigger5response}
+	    )
+	    
+	    var nodeTarget = nodes[i].nextnodeid;
+			var nodeID = nodes[i].nodeid;
+			var nextNode = '<div class="hidden nextnode">' + nodes[i].nextnodeid + '</div>';
+			
+			var newNode = $('.node').clone().find('.row');
+					newNode.attr('id', nodes[i].nodeid);
+					newNode.append('<h1>' + headline + '</h1>');
+					newNode.append(helpText);
+					newNode.append(nextNode);
+
+	    for(var a = 0; a < triggers.length; a++) {
+		    
+		    if(triggers[a].text != '') {
+			    
+			    var btn = '<span class="button" id=' + a + '">' + triggers[a].text + '</span><div class="hidden response">' + triggers[a].target + '</div>';
+				//	console.log(btn);
+					buttons.push(btn);
+					newNode.append(btn);
+		    }
+		    
+	    }
+	    
+	    nodes[i] = newNode; //replace content with object		
+	    $('#container').append(nodes[i]);				
+    }
+   	
+   	for(var i = 2; i < nodes.length; i++) {
+	   	
+	   	console.log(nodes[i]);
+	   	
+   	}
   }
 	
 	initTabletop();
