@@ -76,6 +76,14 @@ section:last-child {
 	border-bottom:0;
 }
 
+.button {
+	
+	/*display:list-item;
+	list-style:none;
+	width:auto;*/
+	
+}
+
 .active {
 	
 	background-color:#4BC3FF;

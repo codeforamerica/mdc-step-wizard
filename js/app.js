@@ -3,7 +3,8 @@ $(document).ready(function() {
 	/******************* TABLETOP.JS ********************/
 
 	var nodes = [];
-	
+	var buttons = [];
+	 
   var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1l2cek8yICAK06ZJJ8Vbii76HJhdPb-0gAiWwJxwb3NM/pubhtml';
 
   function initTabletop() {
@@ -18,18 +19,14 @@ $(document).ready(function() {
     //alert('data loaded');
     nodes = tabletop.sheets('Questions & Responses').all()
     
-    console.log(tabletop.model_names);
-    console.log('nodes:', nodes[4]);
-    console.log('nodes:', nodes[4].nextnodeid);
-    
     // build
     // the first two rows of the table are helpers and don't need to get built
     for(var i = 2; i < nodes.length; i++) {
 	    
 	    var headline = nodes[i].nodeheadline;
 	    var helpText = nodes[i].nodetext;
+	    var nextNode;
 	    var triggers = [];
-	    var buttons = [];
 	    
 	    triggers.push(
 		   
@@ -48,29 +45,64 @@ $(document).ready(function() {
 					newNode.attr('id', nodes[i].nodeid);
 					newNode.append('<h1>' + headline + '</h1>');
 					newNode.append(helpText);
-					newNode.append(nextNode);
+					//newNode.append(nextNode);
 
 	    for(var a = 0; a < triggers.length; a++) {
 		    
+		    //if the trigger exists
 		    if(triggers[a].text != '') {
 			    
-			    var btn = '<span class="button" id=' + a + '">' + triggers[a].text + '</span><div class="hidden response">' + triggers[a].target + '</div>';
-				//	console.log(btn);
+			    //if the trigger's response is to go to the next node
+					if(triggers[a].target.split(' ')[0] == 'GOTO') {
+						
+						var btn = {
+							button: '<div class="button" id=' + triggers[a].target.split(' ')[1] + '>' + triggers[a].text + '<span class="response hidden">' + triggers[a].target + '</span></div>', 
+							target:triggers[a].target.split(' ')[1], 
+							response: triggers[a].target
+						}
+
+					} else {
+						
+						//if the trigger's response is text only, look for the next node in another field
+						var btn = {
+							button: '<div class="button" id=' + nodeTarget + '>' + triggers[a].text + '<span class="response hidden">' + triggers[a].target + '</span></div>', 
+							target:nodeTarget, 
+							response: triggers[a].target
+						}
+
+					}
+					
 					buttons.push(btn);
-					newNode.append(btn);
+					newNode.append(btn.button);
+					
 		    }
 		    
 	    }
 	    
 	    nodes[i] = newNode; //replace content with object		
+	    
+	    //hide everything but the first node.
+	    if(i > 2) {
+		    
+		    $(nodes[i]).addClass('hidden');
+	    }
+	    
+	    //add it all to the container.
 	    $('#container').append(nodes[i]);				
+	    
     }
-   	
-   	for(var i = 2; i < nodes.length; i++) {
-	   	
-	   	console.log(nodes[i]);
-	   	
-   	}
+  
+		//add event listeners for buttons
+		$('body').on('click', '.button', function () {
+        
+       console.log('clicked, motherfuckers.', $(this).find('.response').text());
+       console.log("Target is:", $(this).attr('id'));
+       
+       var goto = $(this).attr('id');
+       $('#' + goto + '.row').removeClass('hidden');
+    
+    });
+  
   }
 	
 	initTabletop();
@@ -123,7 +155,7 @@ $(document).ready(function() {
   initialize();
 	
 	//button states
-	$('.button').click(function(e) {
+	/*$('.button').click(function(e) {
 		
 		e.preventDefault();
 		
@@ -157,7 +189,7 @@ $(document).ready(function() {
 
 		}
 				
-	})
+	})*/
 	
 	//hide all subsequent sections from the current one
 	//in case a user backs way up and changes an answer
