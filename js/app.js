@@ -1,6 +1,113 @@
 $(document).ready(function() {
 	
-	console.log('hello world');
+	/******************* TABLETOP.JS ********************/
+
+	var nodes = [];
+	var buttons = [];
+	 
+  var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1l2cek8yICAK06ZJJ8Vbii76HJhdPb-0gAiWwJxwb3NM/pubhtml';
+
+  function initTabletop() {
+    Tabletop.init( { key: public_spreadsheet_url,
+                     callback: showInfo,
+                     simpleSheet: false,
+                     prettyColumnNames: false } )
+  }
+
+  function showInfo(data, tabletop) {
+    
+    //alert('data loaded');
+    nodes = tabletop.sheets('Questions & Responses').all()
+    
+    // build
+    // the first two rows of the table are helpers and don't need to get built
+    for(var i = 2; i < nodes.length; i++) {
+	    
+	    var headline = nodes[i].nodeheadline;
+	    var helpText = nodes[i].nodetext;
+	    var nextNode;
+	    var triggers = [];
+	    
+	    triggers.push(
+		   
+		    {text: nodes[i].trigger1text, target: nodes[i].trigger1response}, 
+				{text: nodes[i].trigger2text, target: nodes[i].trigger2response},
+				{text: nodes[i].trigger3text, target: nodes[i].trigger3response},
+				{text: nodes[i].trigger4text, target: nodes[i].trigger4response},
+				{text: nodes[i].trigger5text, target: nodes[i].trigger5response}
+	    )
+	    
+	    var nodeTarget = nodes[i].nextnodeid;
+			var nodeID = nodes[i].nodeid;
+			var nextNode = '<div class="hidden nextnode">' + nodes[i].nextnodeid + '</div>';
+			
+			var newNode = $('.node').clone().find('.row');
+					newNode.attr('id', nodes[i].nodeid);
+					newNode.append('<h1>' + headline + '</h1>');
+					newNode.append(helpText);
+					//newNode.append(nextNode);
+
+	    for(var a = 0; a < triggers.length; a++) {
+		    
+		    //if the trigger exists
+		    if(triggers[a].text != '') {
+			    
+			    //if the trigger's response is to go to the next node
+					if(triggers[a].target.split(' ')[0] == 'GOTO') {
+						
+						var btn = {
+							button: '<div class="button" id=' + triggers[a].target.split(' ')[1] + '>' + triggers[a].text + '<span class="response hidden">' + triggers[a].target + '</span></div>', 
+							target:triggers[a].target.split(' ')[1], 
+							response: triggers[a].target
+						}
+
+					} else {
+						
+						//if the trigger's response is text only, look for the next node in another field
+						var btn = {
+							button: '<div class="button" id=' + nodeTarget + '>' + triggers[a].text + '<span class="response hidden">' + triggers[a].target + '</span></div>', 
+							target:nodeTarget, 
+							response: triggers[a].target
+						}
+
+					}
+					
+					buttons.push(btn);
+					newNode.append(btn.button);
+					
+		    }
+		    
+	    }
+	    
+	    nodes[i] = newNode; //replace content with object		
+	    
+	    //hide everything but the first node.
+	    if(i > 2) {
+		    
+		    $(nodes[i]).addClass('hidden');
+	    }
+	    
+	    //add it all to the container.
+	    $('#container').append(nodes[i]);				
+	    
+    }
+  
+		//add event listeners for buttons
+		$('body').on('click', '.button', function () {
+        
+       console.log('clicked, motherfuckers.', $(this).find('.response').text());
+       console.log("Target is:", $(this).attr('id'));
+       
+       var goto = $(this).attr('id');
+       $('#' + goto + '.row').removeClass('hidden');
+    
+    });
+  
+  }
+	
+	initTabletop();
+	
+	/******************* EVERYTHING ELSE ********************/
 	
 	//init geocoder, so that it's ready to go
 	var geocoder;
@@ -48,7 +155,7 @@ $(document).ready(function() {
   initialize();
 	
 	//button states
-	$('.button').click(function(e) {
+	/*$('.button').click(function(e) {
 		
 		e.preventDefault();
 		
@@ -82,7 +189,7 @@ $(document).ready(function() {
 
 		}
 				
-	})
+	})*/
 	
 	//hide all subsequent sections from the current one
 	//in case a user backs way up and changes an answer
