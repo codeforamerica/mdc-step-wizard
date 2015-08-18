@@ -496,9 +496,9 @@ $(document).ready(function() {
 			    //console.log("RESULTS");
 			    //console.log(results);
 			    
-			    lat = results[0].geometry.location.A;
-				lng = results[0].geometry.location.F;
-				console.log(lat, lng);
+			    lat = results[0].geometry.location.lat();
+			    lng = results[0].geometry.location.lng();
+			    console.log(lat, lng);
 				
 				var latlng = new google.maps.LatLng(lat,lng);
 				var mapOptions = {
